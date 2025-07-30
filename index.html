@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☕tong er bill calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕tong er Bill</h1>
+            <p>Calculate your tong er bill and split among friends</p>
+            <!-- Usage Counter -->
+            <div class="usage-counter">
+                <div class="counter-icon">📊</div>
+                <div class="counter-text">
+                    <span>Calculations Made:</span>
+                    <span id="usage-count" class="count-number">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="calculator-card">
+            <div class="menu-section">
+                <h2>🚬 Cigarette Brands</h2>
+                
+                <div class="input-group">
+                    <label for="goldleaf">
+                        <span class="icon">🚬</span>
+                        <span class="item-info">
+                            <span class="item-name">Gold Leaf</span>
+                            <span class="item-price">৳15 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="goldleaf">-</button>
+                        <input type="number" id="goldleaf" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="goldleaf">+</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="benson">
+                        <span class="icon">🚬</span>
+                        <span class="item-info">
+                            <span class="item-name">Benson & Hedges</span>
+                            <span class="item-price">৳20 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="benson">-</button>
+                        <input type="number" id="benson" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="benson">+</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="advance">
+                        <span class="icon">🚬</span>
+                        <span class="item-info">
+                            <span class="item-name">Advance</span>
+                            <span class="item-price">৳20 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="advance">-</button>
+                        <input type="number" id="advance" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="advance">+</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="lucky">
+                        <span class="icon">🚬</span>
+                        <span class="item-info">
+                            <span class="item-name">Lucky Strike</span>
+                            <span class="item-price">৳12 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="lucky">-</button>
+                        <input type="number" id="lucky" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="lucky">+</button>
+                    </div>
+                </div>
+
+                <h2>☕ Beverages & Snacks</h2>
+                
+                <div class="input-group">
+                    <label for="tea">
+                        <span class="icon">🍵</span>
+                        <span class="item-info">
+                            <span class="item-name">chai</span>
+                            <span class="item-price">৳10 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="tea">-</button>
+                        <input type="number" id="tea" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="tea">+</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="coffee">
+                        <span class="icon">☕</span>
+                        <span class="item-info">
+                            <span class="item-name">Coffee</span>
+                            <span class="item-price">৳20 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="coffee">-</button>
+                        <input type="number" id="coffee" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="coffee">+</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="snacks">
+                        <span class="icon">🍪</span>
+                        <span class="item-info">
+                            <span class="item-name">chips</span>
+                            <span class="item-price">৳10 each</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="snacks">-</button>
+                        <input type="number" id="snacks" value="0" min="0" max="50">
+                        <button type="button" class="qty-btn plus" data-target="snacks">+</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="others">
+                        <span class="icon">🍽️</span>
+                        <span class="item-info">
+                            <span class="item-name">Other Items</span>
+                            <span class="item-price">Custom amount</span>
+                        </span>
+                    </label>
+                    <div class="custom-input">
+                        <span class="currency">৳</span>
+                        <input type="number" id="others" placeholder="0" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-section">
+                <h2>👥 Split Bill</h2>
+                <div class="input-group">
+                    <label for="people">
+                        <span class="icon">👤</span>
+                        <span class="item-info">
+                            <span class="item-name">Number of People</span>
+                            <span class="item-price">Split equally</span>
+                        </span>
+                    </label>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn minus" data-target="people">-</button>
+                        <input type="number" id="people" value="1" min="1" max="20">
+                        <button type="button" class="qty-btn plus" data-target="people">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="calculate" class="calculate-btn">
+                    <span>💰 Calculate Bill</span>
+                </button>
+                <button id="reset" class="reset-btn">
+                    <span>🔄 Reset</span>
+                </button>
+            </div>
+
+            <div class="result" id="result">
+                <!-- Special Message Display -->
+                <div class="special-message" id="special-message"></div>
+                
+                <div class="bill-breakdown">
+                    <h3>📊 Bill Breakdown</h3>
+                    <div id="breakdown-details"></div>
+                </div>
+                
+                <div class="total-section">
+                    <div class="total-bill">
+                        <h2>Total Bill: <span id="total-bill">৳0</span></h2>
+                    </div>
+                    <div class="split-bill">
+                        <h2>Per Person: <span id="split-bill">৳0</span></h2>
+                    </div>
+                </div>
+
+                <button id="clear-all" class="clear-btn">🗑️ Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025. All the rights reserved to nahid2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
