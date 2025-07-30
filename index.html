@@ -3,205 +3,570 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☕tong er bill calculator</title>
+    <title>Nafe Amin Nahid - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>☕tong er Bill</h1>
-            <p>Calculate your tong er bill and split among friends</p>
-            <!-- Usage Counter -->
-            <div class="usage-counter">
-                <div class="counter-icon">📊</div>
-                <div class="counter-text">
-                    <span>Calculations Made:</span>
-                    <span id="usage-count" class="count-number">0</span>
-                </div>
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Nahid</span>
+                <span class="logo-dot">.</span>
             </div>
-        </header>
-
-        <div class="calculator-card">
-            <div class="menu-section">
-                <h2>🚬 Cigarette Brands</h2>
-                
-                <div class="input-group">
-                    <label for="goldleaf">
-                        <span class="icon">🚬</span>
-                        <span class="item-info">
-                            <span class="item-name">Gold Leaf</span>
-                            <span class="item-price">৳15 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="goldleaf">-</button>
-                        <input type="number" id="goldleaf" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="goldleaf">+</button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="benson">
-                        <span class="icon">🚬</span>
-                        <span class="item-info">
-                            <span class="item-name">Benson & Hedges</span>
-                            <span class="item-price">৳20 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="benson">-</button>
-                        <input type="number" id="benson" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="benson">+</button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="advance">
-                        <span class="icon">🚬</span>
-                        <span class="item-info">
-                            <span class="item-name">Advance</span>
-                            <span class="item-price">৳20 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="advance">-</button>
-                        <input type="number" id="advance" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="advance">+</button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="lucky">
-                        <span class="icon">🚬</span>
-                        <span class="item-info">
-                            <span class="item-name">Lucky Strike</span>
-                            <span class="item-price">৳12 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="lucky">-</button>
-                        <input type="number" id="lucky" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="lucky">+</button>
-                    </div>
-                </div>
-
-                <h2>☕ Beverages & Snacks</h2>
-                
-                <div class="input-group">
-                    <label for="tea">
-                        <span class="icon">🍵</span>
-                        <span class="item-info">
-                            <span class="item-name">chai</span>
-                            <span class="item-price">৳10 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="tea">-</button>
-                        <input type="number" id="tea" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="tea">+</button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="coffee">
-                        <span class="icon">☕</span>
-                        <span class="item-info">
-                            <span class="item-name">Coffee</span>
-                            <span class="item-price">৳20 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="coffee">-</button>
-                        <input type="number" id="coffee" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="coffee">+</button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="snacks">
-                        <span class="icon">🍪</span>
-                        <span class="item-info">
-                            <span class="item-name">chips</span>
-                            <span class="item-price">৳10 each</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="snacks">-</button>
-                        <input type="number" id="snacks" value="0" min="0" max="50">
-                        <button type="button" class="qty-btn plus" data-target="snacks">+</button>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="others">
-                        <span class="icon">🍽️</span>
-                        <span class="item-info">
-                            <span class="item-name">Other Items</span>
-                            <span class="item-price">Custom amount</span>
-                        </span>
-                    </label>
-                    <div class="custom-input">
-                        <span class="currency">৳</span>
-                        <input type="number" id="others" placeholder="0" min="0" step="0.01">
-                    </div>
-                </div>
-            </div>
-
-            <div class="split-section">
-                <h2>👥 Split Bill</h2>
-                <div class="input-group">
-                    <label for="people">
-                        <span class="icon">👤</span>
-                        <span class="item-info">
-                            <span class="item-name">Number of People</span>
-                            <span class="item-price">Split equally</span>
-                        </span>
-                    </label>
-                    <div class="quantity-control">
-                        <button type="button" class="qty-btn minus" data-target="people">-</button>
-                        <input type="number" id="people" value="1" min="1" max="20">
-                        <button type="button" class="qty-btn plus" data-target="people">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="button-group">
-                <button id="calculate" class="calculate-btn">
-                    <span>💰 Calculate Bill</span>
-                </button>
-                <button id="reset" class="reset-btn">
-                    <span>🔄 Reset</span>
-                </button>
-            </div>
-
-            <div class="result" id="result">
-                <!-- Special Message Display -->
-                <div class="special-message" id="special-message"></div>
-                
-                <div class="bill-breakdown">
-                    <h3>📊 Bill Breakdown</h3>
-                    <div id="breakdown-details"></div>
-                </div>
-                
-                <div class="total-section">
-                    <div class="total-bill">
-                        <h2>Total Bill: <span id="total-bill">৳0</span></h2>
-                    </div>
-                    <div class="split-bill">
-                        <h2>Per Person: <span id="split-bill">৳0</span></h2>
-                    </div>
-                </div>
-
-                <button id="clear-all" class="clear-btn">🗑️ Clear All</button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <footer>
-        <p>© 2025. All the rights reserved to nahid2025</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-name">Nafe Amin Nahid</h1>
+                <h2 class="hero-title">
+                    <span class="typing-text"></span>
+                    <span class="cursor-blink">|</span>
+                </h2>
+                <p class="hero-description">I craft exceptional digital experiences through innovative web development and much more.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <span>Let's Talk</span>
+                        <i class="fas fa-comment"></i>
+                    </a>
+                    <a href="/resume.pdf" class="btn btn-secondary" download>
+                        <span>Download CV</span>
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+                <div class="social-preview">
+                    <a href="https://www.linkedin.com/in/md-nafe-amin-nahid" class="social-link" data-tooltip="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/nahid4942" class="social-link" data-tooltip="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" data-tooltip="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="profile4.jpg" alt="Nafe Amin Nahid">
+                    <div class="image-border"></div>
+                </div>
+                <div class="floating-icons">
+                    <div class="floating-icon"><i class="fab fa-react"></i></div>
+                    <div class="floating-icon"><i class="fab fa-node-js"></i></div>
+                    <div class="floating-icon"><i class="fab fa-js-square"></i></div>
+                    <div class="floating-icon"><i class="fab fa-python"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p class="about-intro">I'm a passionate web Developer with 6 month+ of experience creating digital solutions that make a difference.</p>
+                    <p>My journey in web development started with curiosity and has evolved into a deep passion for creating user-centric applications. I working in modern JavaScript data analytics and have a keen eye for design and user experience.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <h4>Clean Code</h4>
+                                <p>Writing maintainable and scalable code</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>
+                                <h4>Responsive Design</h4>
+                                <p>Creating seamless experiences across devices</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-rocket"></i>
+                            <div>
+                                <h4>Data Refining</h4>
+                                <p>Optimizing data for better insights</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3 class="counter" data-target="50">4</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="counter" data-target="3">0.5</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="counter" data-target="25">1</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat">
+                            <h3 class="counter" data-target="95">0</h3>
+                            <p>Satisfaction Rate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <div class="image-wrapper">
+                        <img src="profile3.jpg" alt="About Image">
+                        <div class="experience-badge">
+                            <span class="badge-number">6+</span>
+                            <span class="badge-text">Month<br>Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+            <div class="skills-content">
+                <div class="skills-categories">
+                    <div class="category active" data-category="frontend">Frontend</div>
+                   
+                    <div class="category" data-category="tools">Tools</div>
+                    <div class="category" data-category="other">DATA ANALYSIS</div>
+                </div>
+                <div class="skills-grid">
+                    <!-- Frontend Skills -->
+                    <div class="skill-card frontend" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3>HTML5</h3>
+                        <p>Semantic markup and accessibility</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card frontend" data-aos="fade-up" data-aos-delay="200">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <h3>CSS3</h3>
+                        <p>Modern CSS and animations</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card frontend" data-aos="fade-up" data-aos-delay="300">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h3>JavaScript</h3>
+                        <p>ES6+ and modern frameworks</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card frontend" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3>React</h3>
+                        <p>Component-based development</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="85"></div>
+                        </div>
+                    </div>
+                    <!-- Backend Skills -->
+                    <div class="skill-card backend" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h3>Node.js</h3>
+                        <p>Server-side JavaScript</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card backend" data-aos="fade-up" data-aos-delay="200">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>MongoDB</h3>
+                        <p>NoSQL database management</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="75"></div>
+                        </div>
+                    </div>
+                    <!-- Tools -->
+                    <div class="skill-card tools" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3>Git</h3>
+                        <p>Version control</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card tools" data-aos="fade-up" data-aos-delay="200">
+                        <div class="skill-icon">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <h3>Docker</h3>
+                        <p>Containerization</p>
+                        <div class="skill-progress">
+                            <div class="progress-bar" data-progress="70"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section 
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3> Frontend Developer</h3>
+                        <h4>Tech Solutions Inc.</h4>
+                        <span class="timeline-date">2022 - Present</span>
+                        <p>Led frontend development for multiple projects, improved performance by 40%, and mentored junior developers.</p>
+                        <ul>
+                            <li>Developed responsive web applications using React and TypeScript</li>
+                            <li>Implemented modern UI/UX designs with high attention to detail</li>
+                            <li>Collaborated with cross-functional teams to deliver projects on time</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Full Stack Developer</h3>
+                        <h4>Digital Agency Co.</h4>
+                        <span class="timeline-date">2021 - 2022</span>
+                        <p>Developed full-stack web applications and contributed to system architecture decisions.</p>
+                        <ul>
+                            <li>Built RESTful APIs using Node.js and Express</li>
+                            <li>Implemented database design and optimization</li>
+                            <li>Maintained and improved existing codebases</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Junior Web Developer</h3>
+                        <h4>StartUp Ventures</h4>
+                        <span class="timeline-date">2020 - 2021</span>
+                        <p>Started my professional journey developing websites and learning industry best practices.</p>
+                        <ul>
+                            <li>Created responsive websites using HTML, CSS, and JavaScript</li>
+                            <li>Learned version control and collaborative development</li>
+                            <li>Participated in code reviews and team meetings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  -->
+
+    <!-- Projects Section (Enhanced) 
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250" alt="E-Commerce Platform">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-tooltip="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" data-tooltip="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link" data-tooltip="Details">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Web Application</div>
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-featured e-commerce solution with payment integration, admin dashboard, and real-time inventory management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card mobile" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Task Management">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-tooltip="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" data-tooltip="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Mobile App</div>
+                        <h3>Task Management App</h3>
+                        <p>A productivity app with real-time collaboration, task assignment, and progress tracking features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card design" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Weather Dashboard">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-tooltip="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" data-tooltip="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Web Design</div>
+                        <h3>Weather Dashboard</h3>
+                        <p>A beautiful weather application with interactive maps, forecasts, and location-based services.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  -->
+
+    <!-- Testimonials Section 
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What Clients Say</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card active" data-aos="fade-up">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"John delivered exceptional work on our e-commerce platform. His attention to detail and technical expertise exceeded our expectations."</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/60x60" alt="Client">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <span>CEO, TechStart Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Working with John was a pleasure. He's professional, communicative, and delivers high-quality code on time."</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/60x60" alt="Client">
+                            <div>
+                                <h4>Michael Chen</h4>
+                                <span>CTO, Digital Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section (Enhanced) -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Let's Work Together</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Get in touch</h3>
+                    <p>I'm always excited to work on new projects and collaborate with amazing people. Let's create something great together!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <span>nafeaminnahid1978@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <span>+88 01740234701</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <span>Dhaka, Bangladesh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="logo">
+                        <span class="logo-text">Nahid</span>
+                        <span class="logo-dot">.</span>
+                    </div>
+                    <p>Creating digital experiences that inspire and engage.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nafe Amin Nahid. All rights reserved.</p>
+                <p>Made with <i class="fas fa-heart"></i> and lots of coffee</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
 </html>
+
