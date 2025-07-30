@@ -495,5 +495,47 @@ window.addEventListener('load', () => {
     }, 1000);
 });
 
+// CV Download Function
+function downloadCV() {
+    const cvPath = 'cv.pdf';
+    const link = document.createElement('a');
+    link.href = cvPath;
+    link.download = 'Nafe_Amin_Nahid_CV.pdf';
+    
+    // Check if file exists before download
+    fetch(cvPath, { method: 'HEAD' })
+        .then(response => {
+            if (response.ok) {
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showNotification('CV download started successfully!', 'success');
+            } else {
+                showNotification('CV file not found. Please contact me directly.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error checking CV file:', error);
+            // Still attempt download in case of network issues
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showNotification('CV download initiated. If it fails, please contact me directly.', 'success');
+        });
+}
+
+// Add event listeners for CV download buttons
+document.addEventListener('DOMContentLoaded', () => {
+    // Find all CV download buttons/links
+    const cvDownloadButtons = document.querySelectorAll('a[href="cv.pdf"], .btn-secondary[href="cv.pdf"]');
+    
+    cvDownloadButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            downloadCV();
+        });
+    });
+});
+
 // Initialize theme on page load
 window.addEventListener('load', initializeTheme);
