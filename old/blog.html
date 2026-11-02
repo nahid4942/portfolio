@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog</title>
+<style>
+:root{--ac:#2f5bff;--bg:#0e0e10;--pn:#18181b;--ln:#2a2a30;--tx:#f3f3f5;--mut:#9a9aa6;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 "Segoe UI",system-ui,sans-serif}
+button,input,textarea,select{font:inherit;color:inherit}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin:0;overflow-wrap:anywhere}
+:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.w{max-width:1180px;margin:0 auto;padding:0 18px}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
+.lg{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}.lg i{width:38px;height:38px;border-radius:50%;background:var(--ac);display:grid;place-items:center;font-style:normal}
+.nv{display:flex;gap:24px;font-size:13px;color:var(--mut)}.nv a:hover,.nv .on{color:#fff}
+.btn{border:0;background:var(--ac);color:#fff;font-weight:600;border-radius:22px;padding:9px 20px;cursor:pointer;display:inline-block;text-align:center}
+.btn.wh{background:#fff;color:#111}.btn.ol{background:none;border:1.5px solid #3a3a42}.btn.sm{padding:5px 14px;font-size:13px}.btn.red{background:#c0392b}
+.hero{padding:30px 0 6px}.hero h1{font-size:clamp(28px,5vw,40px);font-weight:800}.hero p{color:var(--mut);max-width:560px;margin-top:10px;font-size:13px}
+.bar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:22px 0}
+.sr{flex:1 1 240px;max-width:340px;background:var(--pn);border:1px solid var(--ln);border-radius:22px;padding:4px 16px}.sr input{background:none;border:0;width:100%;padding:8px 0}.sr input:focus{outline:0}
+.cats{display:flex;gap:4px;flex-wrap:wrap}.cats button{background:none;border:0;color:var(--mut);padding:7px 14px;border-radius:20px;cursor:pointer;font-size:13px}.cats .on{background:var(--ac);color:#fff}
+.sec{text-align:center;font-size:15px;margin:24px 0 14px}
+.slide{position:relative;border-radius:22px;overflow:hidden;min-height:210px;background:linear-gradient(120deg,var(--ac),#101a44) center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 20px;cursor:pointer}
+.slide:before{content:"";position:absolute;inset:0;background:#0009}.slide>div{position:relative;max-width:640px}.slide h2{font-size:clamp(20px,3.5vw,28px);margin:12px 0 8px}.slide p{color:#dcdce4;font-size:13px}
+.au{display:inline-flex;align-items:center;gap:8px;background:#fffffff0;color:#222;border-radius:20px;padding:3px 14px 3px 3px;font-size:12px}
+.au i{width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:700}
+.dots{display:flex;justify-content:center;gap:8px;margin:12px 0}.dots button{width:10px;height:10px;border-radius:50%;border:1px solid #999;background:none;padding:0;cursor:pointer}.dots .on{background:#fff}
+.gr{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+.ar{display:flex;flex-direction:column}
+.im{position:relative;aspect-ratio:4/4.3;border-radius:18px;background:linear-gradient(135deg,var(--ac),#10132b) center/cover;overflow:hidden;display:block}
+.im .au{position:absolute;left:12px;bottom:12px}.hot{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:#ffe3df;display:grid;place-items:center}
+.ar h3{font-size:16px;margin:16px 0 8px;line-height:1.5}.ex{color:var(--mut);font-size:12.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.mt{display:flex;gap:18px;color:var(--mut);font-size:12px;margin:14px 0;padding-top:12px;border-top:1px solid var(--ln)}
+.ar .btn{margin-top:auto;background:none;border:1.5px solid #3a3a42}.ar:hover .btn{background:var(--ac);border-color:var(--ac)}
+.pg{display:flex;justify-content:center;gap:8px;margin:34px 0}.pg button{min-width:32px;height:32px;border-radius:8px;border:1px solid #3a3a42;background:none;cursor:pointer}.pg .on{border-color:#fff}.pg .nx{background:var(--ac);border-color:var(--ac)}
+.sub{background:#1c1c20;margin-top:36px;padding:32px 0}.sub .w{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.sub .f{display:flex;gap:10px;flex:1 1 320px;max-width:480px}
+input,textarea,select{width:100%;background:#0006;border:1px solid #3a3a42;border-radius:12px;padding:9px 14px}textarea{min-height:90px;resize:vertical}
+.ft{padding:26px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--mut);font-size:12px;align-items:center}.ft nav{display:flex;gap:18px}
+.empty{grid-column:1/-1;text-align:center;padding:50px;color:var(--mut);background:var(--pn);border-radius:18px}
+.art{max-width:760px;margin:10px auto}.cv{aspect-ratio:16/9;border-radius:20px;background:linear-gradient(135deg,var(--ac),#10132b) center/cover}
+.art h1{font-size:clamp(26px,5vw,40px);line-height:1.15;margin:16px 0 10px}.bd p{font-size:17px;line-height:1.75;margin:0 0 16px}.pnv{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:26px 0}
+.pnl{background:var(--pn);border-radius:20px;padding:18px;margin:10px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.tabs button{border:1.5px solid var(--ac);background:none;border-radius:18px;padding:5px 14px;cursor:pointer}.tabs .on{background:var(--ac)}
+.row{display:flex;gap:10px;align-items:center;background:#0004;border-radius:14px;padding:8px;margin-bottom:8px}.row .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.th{width:50px;height:50px;border-radius:10px;background:linear-gradient(135deg,var(--ac),#10132b) center/cover;flex:none}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 3px}.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.mut{color:var(--mut);font-size:13px}
+.hid{opacity:.15}.hid:hover,.hid:focus-visible{opacity:1}
+@media(prefers-reduced-motion:no-preference){.ar .im{transition:filter .2s}.ar:hover .im{filter:brightness(1.1)}}
+@media(max-width:900px){.gr{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.nv{display:none}}
+@media(max-width:560px){.gr{grid-template-columns:1fr}.w{padding:0 12px}input,textarea,select{font-size:16px}.tabs{flex-wrap:nowrap;overflow-x:auto}.tabs button{flex:none}.sub .f{flex-wrap:wrap}}
+</style></head><body><div id="root"></div>
+<script>
+const KEYS=['projects','photos','blogs','events','collabs','certs','stack'];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const bg=u=>u?`style="background-image:url('${esc(u)}')"`:'';
+const fmt=n=>{n=+n||0;return n>=1000?(n/1000).toFixed(n%1000?1:0)+'K':n};
+function seed(){const b=(title,desc,cat,author,hot,views,date)=>({id:uid(),title,desc,body:desc,img:'',link:'',meta:'',cat,author,hot,views,date});
+ const D={profile:{name:'Your Name',role:'Computer Science Student',bio:'',hero:'',avatar:'',location:'',tags:'',since:'',email:'',github:'',pin:'admin123'}};KEYS.forEach(k=>D[k]=[]);
+ D.blogs=[b('Artificial Intelligence Beyond Imaginations','How machine learning has moved from research papers into everyday tools, and what that means for students.','Technology','Your Name',true,12400,'2026-10-12'),b('Getting started with open source','A simple path from reading code to your first merged pull request.','Programming','Your Name',false,3200,'2026-09-20'),b('What I learned from my first hackathon','Notes on planning, teamwork and shipping a demo in 24 hours.','Career','Your Name',true,9800,'2026-08-30')];return D}
+let D;try{D=JSON.parse(localStorage.getItem('pf'))}catch(e){}
+if(!D||!D.profile)D=seed();KEYS.forEach(k=>{if(!Array.isArray(D[k]))D[k]=[]});
+D.blogcfg=Object.assign({site:'MY BLOG',heroTitle:'Discover Nice Articles Here',heroText:'All the articles and contents of the site are updated here and you can find them quickly and without any problems.',cats:'Technology, Programming, Design, Career',accent:'#2f5bff',portfolio:'',footer:'All rights reserved.'},D.blogcfg||{});D.subs=D.subs||[];
+const C=()=>D.blogcfg;
+function save(){try{localStorage.setItem('pf',JSON.stringify(D));return true}catch(e){alert('Storage is full. Use smaller images or paste image links.');return false}}
+const posts=()=>D.blogs.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+let q='',cat='All',page=1,sl=0,tm=null,tab='posts',ed=null;const PER=6;
+const au=p=>`<span class="au"><i>${esc((p.author||'A')[0].toUpperCase())}</i>${esc(p.author||'Author')}</span>`;
+const card=p=>`<article class="ar"><a class="im" href="#post-${p.id}" aria-label="${esc(p.title)}" ${bg(p.img)}>${p.hot?'<span class="hot">🔥</span>':''}${au(p)}</a><h3><a href="#post-${p.id}">${esc(p.title)}</a></h3><p class="ex">${esc(p.desc)}</p><div class="mt"><span>📅 ${esc(p.date||'')}</span><span>👁 ${fmt(p.views)} Viewers</span></div><a class="btn" href="#post-${p.id}">Read More</a></article>`;
+const head=()=>`<div class="w"><header class="hd"><a class="lg" href="#home"><i>${esc((C().site||'B')[0])}</i>${esc(C().site)}</a><nav class="nv"><a href="#home" class="on">Blog</a>${C().portfolio?`<a href="${esc(C().portfolio)}">Portfolio</a>`:''}<a href="#subscribe">Subscribe</a></nav><a class="btn wh sm" href="${esc(C().portfolio||'portfolio.html')}">Portfolio</a></header></div>`;
+const foot=()=>`<div class="w"><footer class="ft"><nav><a href="#home">Home</a><a href="#subscribe">Subscribe</a><a href="${esc(C().portfolio||'portfolio.html')}">Portfolio</a><a href="#admin" class="hid" aria-label="Admin">Admin</a></nav><b>${esc(C().site)}</b><span>© ${new Date().getFullYear()} ${esc(C().footer)}</span></footer></div>`;
+function route(){clearInterval(tm);const h=location.hash.slice(1)||'home';
+ if(h==='admin')admin();else if(h.startsWith('post-'))post(h.slice(5));else{index();if(h==='subscribe')$('#sub').scrollIntoView()}}
+function index(){
+ $('#root').innerHTML=head()+`<div class="w"><section class="hero"><h1>${esc(C().heroTitle)}</h1><p>${esc(C().heroText)}</p><div class="bar"><div class="sr"><input id="q" type="search" placeholder="Search…" aria-label="Search articles" value="${esc(q)}"></div><div class="cats" id="cats"></div></div></section><h2 class="sec">Articles</h2><div id="sld"></div><div class="dots" id="dots"></div><div class="gr" id="gr"></div><div class="pg" id="pg"></div></div><section class="sub" id="sub"><div class="w"><div><h2>Subscribe For New Content</h2><p class="mut">Get an update when a new article is published.</p></div><div class="f"><input id="em" type="email" placeholder="Your email" aria-label="Email"><button class="btn" onclick="subscribe()">Subscribe</button></div></div></section>`+foot();
+ $('#q').oninput=e=>{q=e.target.value;page=1;draw()};draw();slides()}
+function draw(){
+ const cs=['All'].concat(C().cats.split(',').map(s=>s.trim()).filter(Boolean));
+ $('#cats').innerHTML=cs.map(c=>`<button class="${c===cat?'on':''}" onclick="cat='${esc(c)}';page=1;draw()">${esc(c)}</button>`).join('');
+ const L=posts().filter(p=>(cat==='All'||(p.cat||'').toLowerCase()===cat.toLowerCase())&&(!q||(p.title+' '+p.desc+' '+(p.author||'')).toLowerCase().includes(q.toLowerCase())));
+ const n=Math.max(1,Math.ceil(L.length/PER));if(page>n)page=n;
+ $('#gr').innerHTML=L.length?L.slice((page-1)*PER,page*PER).map(card).join(''):'<div class="empty">No articles found.</div>';
+ $('#pg').innerHTML=n<2?'':`<button aria-label="Previous" class="nx" onclick="go(${page-1})">‹</button>`+Array.from({length:n},(_,i)=>`<button class="${i+1===page?'on':''}" onclick="go(${i+1})">${i+1}</button>`).join('')+`<button aria-label="Next" class="nx" onclick="go(${page+1})">›</button>`}
+function go(p){const n=Math.ceil(posts().length/PER);page=Math.min(Math.max(1,p),n);draw();$('#gr').scrollIntoView({behavior:'smooth'})}
+function slides(){const P=posts(),F=P.filter(p=>p.hot).concat(P.filter(p=>!p.hot)).slice(0,3);if(!F.length){$('#sld').innerHTML='';$('#dots').innerHTML='';return}
+ const show=()=>{const p=F[sl%F.length];$('#sld').innerHTML=`<div class="slide" ${bg(p.img)} onclick="location.hash='post-${p.id}'"><div>${au(p)}<h2>${esc(p.title)}</h2><p>${esc(p.desc)}</p></div></div>`;$('#dots').innerHTML=F.map((_,i)=>`<button class="${i===sl%F.length?'on':''}" aria-label="Slide ${i+1}" onclick="sl=${i};clearInterval(tm);show()"></button>`).join('')};
+ sl=0;show();if(F.length>1&&!matchMedia('(prefers-reduced-motion: reduce)').matches)tm=setInterval(()=>{sl++;show()},5000)}
+function subscribe(){const e=$('#em').value.trim();if(!/^\S+@\S+\.\S+$/.test(e)){alert('Enter a valid email.');return}
+ if(!D.subs.some(s=>s.email===e))D.subs.push({email:e,date:new Date().toISOString().slice(0,10)});if(save()){$('#em').value='';alert('Thanks for subscribing!')}}
+function post(id){const L=posts(),p=L.find(x=>x.id===id);if(!p){location.hash='home';return}
+ if(!sessionStorage.getItem('v'+id)){p.views=(+p.views||0)+1;sessionStorage.setItem('v'+id,1);save()}
+ const k=L.indexOf(p),nw=L[k-1],ol=L[k+1];
+ const body=(p.body||p.desc||'').split(/\n{2,}/).map(t=>`<p>${esc(t).replace(/\n/g,'<br>')}</p>`).join('');
+ $('#root').innerHTML=head()+`<div class="w"><article class="art"><div class="cv" ${bg(p.img)}></div><h1>${esc(p.title)}</h1><p class="mut">${au(p)} &nbsp;📅 ${esc(p.date||'')} &nbsp;👁 ${fmt(p.views)} Viewers ${p.cat?'&nbsp;•&nbsp; '+esc(p.cat):''}</p><br><div class="bd">${body}</div>${p.link?`<p><a class="btn" href="${esc(p.link)}" target="_blank" rel="noopener">Open link</a></p>`:''}<div class="pnv">${ol?`<a class="btn ol sm" href="#post-${ol.id}">← ${esc(ol.title)}</a>`:'<span></span>'}${nw?`<a class="btn ol sm" href="#post-${nw.id}">${esc(nw.title)} →</a>`:''}</div><a class="btn" href="#home">All articles</a></article></div>`+foot();scrollTo(0,0)}
+/* admin */
+function admin(){
+ if(sessionStorage.getItem('ok')!=='1'){$('#root').innerHTML=head()+`<div class="w"><div class="pnl" style="max-width:380px;margin:50px auto"><h2>Admin sign in</h2><label>PIN</label><input id="pin" type="password" autofocus><div class="acts"><button class="btn" onclick="login()">Sign in</button><a class="btn ol" href="#home">Back</a></div><p class="mut">The PIN is shared with the portfolio admin. Default is admin123. It only keeps casual visitors out; it is not real security.</p></div></div>`;$('#pin').onkeydown=e=>{if(e.key==='Enter')login()};return}
+ const T=[['posts','Posts'],['site','Site settings'],['subs','Subscribers ('+D.subs.length+')']];let b;
+ if(tab==='posts'){const e=ed?(D.blogs.find(x=>x.id===ed)||{}):{};
+  b=`<div class="two"><div><h3>Posts (${D.blogs.length})</h3><br>${posts().map(i=>`<div class="row"><div class="th" ${bg(i.img)}></div><div class="t">${i.hot?'🔥 ':''}${esc(i.title)}</div><a class="btn ol sm" href="#post-${i.id}">View</a><button class="btn sm" onclick="ed='${i.id}';admin()">Edit</button><button class="btn red sm" onclick="del('${i.id}')">Delete</button></div>`).join('')||'<p class="mut">No posts yet.</p>'}</div>
+  <div><h3>${e.id?'Edit':'New'} post</h3>${fi('title','Title',e.title)}<label>Short description</label><textarea id="i_desc">${esc(e.desc)}</textarea><label>Full article (blank line = new paragraph)</label><textarea id="i_body" style="min-height:180px">${esc(e.body)}</textarea>${fi('cat','Category',e.cat)}${fi('author','Author',e.author)}${fi('views','Views',e.views||0,'number')}${fi('date','Date',e.date,'date')}${fi('link','Link (optional)',e.link)}<label>Cover image</label><input id="i_img" placeholder="Image link" value="${esc(e.img&&e.img.startsWith('data:')?'':e.img)}"><input type="file" accept="image/*" onchange="up(this,'i_img')">${e.img&&e.img.startsWith('data:')?'<p class="mut">An uploaded image is saved. Choose a new file to replace it.</p>':''}<label style="display:flex;gap:8px;align-items:center"><input id="i_hot" type="checkbox" style="width:auto" ${e.hot?'checked':''}> Hot / featured in slider</label><div class="acts"><button class="btn" onclick="savePost()">${e.id?'Save changes':'Add post'}</button>${e.id?'<button class="btn ol" onclick="ed=null;admin()">Cancel</button>':''}</div></div></div>`}
+ else if(tab==='site'){const c=C();b=`<div class="two"><div>${fs('site','Site name',c.site)}${fs('heroTitle','Hero title',c.heroTitle)}${fs('cats','Categories (comma separated)',c.cats)}${fs('portfolio','Portfolio link (optional)',c.portfolio)}${fs('footer','Footer text',c.footer)}</div><div><label>Hero text</label><textarea id="s_heroText">${esc(c.heroText)}</textarea><label>Accent color</label><input id="s_accent" type="color" value="${c.accent}" style="height:44px;padding:3px"></div></div><div class="acts"><button class="btn" onclick="saveSite()">Save settings</button></div>`}
+ else b=`<h3>Subscribers</h3><br>${D.subs.map((s,i)=>`<div class="row"><div class="t">${esc(s.email)}</div><span class="mut">${esc(s.date)}</span><button class="btn red sm" onclick="D.subs.splice(${i},1);save();admin()">Remove</button></div>`).join('')||'<p class="mut">No subscribers yet.</p>'}`;
+ $('#root').innerHTML=head()+`<div class="w"><div class="pnl"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center"><h2>Blog admin</h2><span><a class="btn ol sm" href="#home">View blog</a> <button class="btn ol sm" onclick="sessionStorage.removeItem('ok');admin()">Sign out</button></span></div><div class="tabs">${T.map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="tab='${k}';ed=null;admin()">${l}</button>`).join('')}</div>${b}<hr style="border-color:#fff2;margin:22px 0"><div class="acts"><button class="btn ol sm" onclick="exp()">Export backup</button><label class="btn ol sm" style="margin:0;cursor:pointer;color:inherit">Import backup<input type="file" accept=".json" hidden onchange="imp(this)"></label></div><p class="mut">Posts here are the same posts as the Blogs section in the portfolio admin, as long as both pages are hosted on the same site.</p></div></div>`}
+const fi=(k,l,v,t)=>`<label>${l}</label><input id="i_${k}" type="${t||'text'}" value="${esc(v)}">`;
+const fs=(k,l,v)=>`<label>${l}</label><input id="s_${k}" value="${esc(v)}">`;
+function login(){if($('#pin').value===D.profile.pin){sessionStorage.setItem('ok','1');admin()}else alert('Wrong PIN. Try again.')}
+function up(inp,t){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const sc=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*sc;c.height=im.height*sc;c.getContext('2d').drawImage(im,0,0,c.width,c.height);document.getElementById(t).value=c.toDataURL('image/jpeg',.72);inp.insertAdjacentHTML('afterend','<p class="mut">Image ready. Save to keep it.</p>')};im.src=r.result};r.readAsDataURL(f)}
+function savePost(){const t=$('#i_title').value.trim();if(!t){alert('Add a title first.');return}
+ const old=ed?D.blogs.find(x=>x.id===ed):null,img=$('#i_img').value||(old&&old.img&&old.img.startsWith('data:')?old.img:'');
+ const o={id:old?old.id:uid(),title:t,desc:$('#i_desc').value,body:$('#i_body').value,cat:$('#i_cat').value.trim(),author:$('#i_author').value.trim(),views:+$('#i_views').value||0,date:$('#i_date').value,link:$('#i_link').value.trim(),img,hot:$('#i_hot').checked};
+ if(old)Object.assign(old,o);else D.blogs.push(Object.assign({meta:''},o));ed=null;if(save())admin()}
+function del(id){if(!confirm('Delete this post?'))return;D.blogs=D.blogs.filter(x=>x.id!==id);ed=null;save();admin()}
+function saveSite(){const c=C();['site','heroTitle','cats','portfolio','footer','heroText','accent'].forEach(k=>c[k]=$('#s_'+k).value.trim());if(save()){theme();alert('Settings saved.');admin()}}
+function theme(){document.documentElement.style.setProperty('--ac',C().accent)}
+function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:'application/json'}));a.download='portfolio-backup.json';a.click()}
+function imp(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(!j.profile)throw 0;D=j;KEYS.forEach(k=>{if(!Array.isArray(D[k]))D[k]=[]});D.blogcfg=Object.assign(C?{}:{},D.blogcfg||{});save();location.reload()}catch(e){alert('That file is not a backup.')}};r.readAsText(f)}
+addEventListener('hashchange',route);theme();route();
+</script></body></html>
