@@ -1,119 +1,121 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--ac:#2f5bff;--bg:#0e0e10;--pn:#18181b;--ln:#2a2a30;--tx:#f3f3f5;--mut:#9a9aa6;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 "Segoe UI",system-ui,sans-serif}
-button,input,textarea,select{font:inherit;color:inherit}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin:0;overflow-wrap:anywhere}
-:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.w{max-width:1180px;margin:0 auto;padding:0 18px}
-.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
-.lg{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}.lg i{width:38px;height:38px;border-radius:50%;background:var(--ac);display:grid;place-items:center;font-style:normal}
-.nv{display:flex;gap:24px;font-size:13px;color:var(--mut)}.nv a:hover,.nv .on{color:#fff}
-.btn{border:0;background:var(--ac);color:#fff;font-weight:600;border-radius:22px;padding:9px 20px;cursor:pointer;display:inline-block;text-align:center}
-.btn.wh{background:#fff;color:#111}.btn.ol{background:none;border:1.5px solid #3a3a42}.btn.sm{padding:5px 14px;font-size:13px}.btn.red{background:#c0392b}
-.hero{padding:30px 0 6px}.hero h1{font-size:clamp(28px,5vw,40px);font-weight:800}.hero p{color:var(--mut);max-width:560px;margin-top:10px;font-size:13px}
-.bar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:22px 0}
-.sr{flex:1 1 240px;max-width:340px;background:var(--pn);border:1px solid var(--ln);border-radius:22px;padding:4px 16px}.sr input{background:none;border:0;width:100%;padding:8px 0}.sr input:focus{outline:0}
-.cats{display:flex;gap:4px;flex-wrap:wrap}.cats button{background:none;border:0;color:var(--mut);padding:7px 14px;border-radius:20px;cursor:pointer;font-size:13px}.cats .on{background:var(--ac);color:#fff}
-.sec{text-align:center;font-size:15px;margin:24px 0 14px}
-.slide{position:relative;border-radius:22px;overflow:hidden;min-height:210px;background:linear-gradient(120deg,var(--ac),#101a44) center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 20px;cursor:pointer}
-.slide:before{content:"";position:absolute;inset:0;background:#0009}.slide>div{position:relative;max-width:640px}.slide h2{font-size:clamp(20px,3.5vw,28px);margin:12px 0 8px}.slide p{color:#dcdce4;font-size:13px}
-.au{display:inline-flex;align-items:center;gap:8px;background:#fffffff0;color:#222;border-radius:20px;padding:3px 14px 3px 3px;font-size:12px}
-.au i{width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:700}
-.dots{display:flex;justify-content:center;gap:8px;margin:12px 0}.dots button{width:10px;height:10px;border-radius:50%;border:1px solid #999;background:none;padding:0;cursor:pointer}.dots .on{background:#fff}
-.gr{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
-.ar{display:flex;flex-direction:column}
-.im{position:relative;aspect-ratio:4/4.3;border-radius:18px;background:linear-gradient(135deg,var(--ac),#10132b) center/cover;overflow:hidden;display:block}
-.im .au{position:absolute;left:12px;bottom:12px}.hot{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:50%;background:#ffe3df;display:grid;place-items:center}
-.ar h3{font-size:16px;margin:16px 0 8px;line-height:1.5}.ex{color:var(--mut);font-size:12.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.mt{display:flex;gap:18px;color:var(--mut);font-size:12px;margin:14px 0;padding-top:12px;border-top:1px solid var(--ln)}
-.ar .btn{margin-top:auto;background:none;border:1.5px solid #3a3a42}.ar:hover .btn{background:var(--ac);border-color:var(--ac)}
-.pg{display:flex;justify-content:center;gap:8px;margin:34px 0}.pg button{min-width:32px;height:32px;border-radius:8px;border:1px solid #3a3a42;background:none;cursor:pointer}.pg .on{border-color:#fff}.pg .nx{background:var(--ac);border-color:var(--ac)}
-.sub{background:#1c1c20;margin-top:36px;padding:32px 0}.sub .w{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.sub .f{display:flex;gap:10px;flex:1 1 320px;max-width:480px}
-input,textarea,select{width:100%;background:#0006;border:1px solid #3a3a42;border-radius:12px;padding:9px 14px}textarea{min-height:90px;resize:vertical}
-.ft{padding:26px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--mut);font-size:12px;align-items:center}.ft nav{display:flex;gap:18px}
-.empty{grid-column:1/-1;text-align:center;padding:50px;color:var(--mut);background:var(--pn);border-radius:18px}
-.art{max-width:760px;margin:10px auto}.cv{aspect-ratio:16/9;border-radius:20px;background:linear-gradient(135deg,var(--ac),#10132b) center/cover}
-.art h1{font-size:clamp(26px,5vw,40px);line-height:1.15;margin:16px 0 10px}.bd p{font-size:17px;line-height:1.75;margin:0 0 16px}.pnv{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:26px 0}
-.pnl{background:var(--pn);border-radius:20px;padding:18px;margin:10px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.tabs button{border:1.5px solid var(--ac);background:none;border-radius:18px;padding:5px 14px;cursor:pointer}.tabs .on{background:var(--ac)}
-.row{display:flex;gap:10px;align-items:center;background:#0004;border-radius:14px;padding:8px;margin-bottom:8px}.row .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.th{width:50px;height:50px;border-radius:10px;background:linear-gradient(135deg,var(--ac),#10132b) center/cover;flex:none}
-label{display:block;font-size:13px;color:var(--mut);margin:10px 0 3px}.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.mut{color:var(--mut);font-size:13px}
-.hid{opacity:.15}.hid:hover,.hid:focus-visible{opacity:1}
-@media(prefers-reduced-motion:no-preference){.ar .im{transition:filter .2s}.ar:hover .im{filter:brightness(1.1)}}
-@media(max-width:900px){.gr{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.nv{display:none}}
-@media(max-width:560px){.gr{grid-template-columns:1fr}.w{padding:0 12px}input,textarea,select{font-size:16px}.tabs{flex-wrap:nowrap;overflow-x:auto}.tabs button{flex:none}.sub .f{flex-wrap:wrap}}
-</style></head><body><div id="root"></div>
+:root{--ink:#0c0c0c;--mut:#667085;--line:#e6e8ec;--card:#f3f4f6}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.btn{display:inline-block;border:1px solid var(--ink);border-radius:8px;padding:9px 16px;font:600 14px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.dark{background:var(--ink);color:#fff}.ghost{border-color:#555;color:#fff;background:transparent}.light{background:#222;border-color:#444;color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1280px;margin:auto}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px}
+.logo img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:#fff;border:1px solid var(--line)}
+.logo i{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 14px 'Plus Jakarta Sans',sans-serif;font-style:normal}
+.nav nav{display:flex;gap:28px;font-weight:600;font-size:14px}.nav nav a.on{text-decoration:underline;text-underline-offset:6px}
+.hero{position:relative;margin:0 12px;border-radius:24px;overflow:hidden;min-height:min(78vh,560px);display:flex;align-items:flex-end;color:#fff;background:linear-gradient(135deg,#14213d,#0c0c0c) center/cover}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05) 65%)}
+.hc{position:relative;padding:40px clamp(20px,5vw,60px);max-width:900px}
+.hc .lb{font-size:18px;font-weight:500;margin-bottom:8px}.hc h1{font-size:clamp(30px,5vw,48px);line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.hc .tx{margin-top:16px;max-width:620px;font-size:15px;opacity:.92}
+.arrow{position:absolute;right:clamp(20px,4vw,48px);bottom:clamp(60px,10vw,110px)}
+.wrap{max-width:1280px;margin:auto;padding:72px clamp(20px,5vw,60px) 40px}
+.wrap h2{font-size:18px;font-weight:600;margin-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 14px;font:600 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.chips button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 24px}
+.card{cursor:pointer;display:block;text-align:left;background:none;border:0;font:inherit;color:inherit;padding:0}
+.th{position:relative;aspect-ratio:1.42;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#dfe5f0,#eef0f2) center/cover}
+.th.v:after{content:"";position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px;border-radius:50%;background:rgba(255,255,255,.85) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l9 5-9 5z'/%3E%3C/svg%3E") center/26px no-repeat}
+.card h3{font-size:18px;font-weight:600;margin:20px 0 6px;line-height:1.3}
+.card p{color:var(--mut);font-size:13px}
+.by{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:#344054;font-weight:500}
+.by b{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px}
+.empty{grid-column:1/-1;color:var(--mut)}.more{text-align:center;margin-top:48px}
+.foot{background:#000;color:#fff;margin:40px 12px 12px;border-radius:24px;padding:56px clamp(20px,5vw,60px) 28px}
+.cta{text-align:center}.cta h2{font-size:20px;font-weight:700}.cta p{margin:8px 0 20px;font-size:14px}.cta .btn{margin:0 4px}
+.cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;margin:56px auto 64px;max-width:1100px;font-size:13px}
+.cols h4{font-size:12px;font-weight:600;color:#a0a4ab;margin-bottom:12px}.cols a{display:block;margin-bottom:10px}.cols p{color:#c4c7cd;max-width:320px}
+.bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:#d0d3d8}
+.bar .logo i{background:#fff;color:#000}
+dialog{border:0;border-radius:20px;max-width:760px;width:calc(100% - 24px);padding:0;max-height:92vh}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.rd{padding:24px}.rd .x{float:right;background:var(--card);border:0;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:18px}
+.rd h2{font-size:26px;line-height:1.2;margin:8px 0}.rd .m{color:var(--mut);font-size:13px;margin-bottom:16px}
+.rd img,.rd iframe{width:100%;border-radius:14px;margin-bottom:16px;aspect-ratio:16/9;object-fit:cover;border:0}
+.rd .bd p{margin-bottom:14px;max-width:68ch}
+a:focus-visible,button:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.nav nav,.arrow{display:none}.cols{grid-template-columns:1fr 1fr}.cols>:first-child{grid-column:1/-1}}
+</style></head><body>
+<header class="nav"><a class="logo" href="index.html"><img class="li" alt=""><span class="bn"></span></a>
+<a class="btn dark" href="index.html">← Portfolio</a></header>
+<main>
+<section class="hero" id="hero"><div class="hc"><p class="lb" id="hl"></p><h1 id="ht"></h1><p class="tx" id="hx"></p></div>
+<a class="arrow" id="ha" aria-label="Open link"><svg width="48" height="40" viewBox="0 0 48 40" fill="none" stroke="#fff" stroke-width="2.5"><path d="M2 20h42M26 3l18 17-18 17"/></svg></a></section>
+<section class="wrap" id="posts"><h2 id="lt"></h2><div class="chips" id="chips"></div><div class="grid" id="grid"></div><div class="more"><button class="btn dark" id="more" hidden>Load more</button></div></section>
+</main>
+<footer class="foot"><div class="cta"><h2 id="ct"></h2><p id="cx"></p><a class="btn ghost" id="b1"></a><a class="btn light" id="b2"></a></div>
+<div class="cols"><div><h4 class="bn"></h4><p id="role"></p></div>
+<div><h4>Explore</h4><a href="index.html">Home</a><a href="index.html#projects">Projects</a><a href="blog.html">Blog</a><a href="index.html#contact">Contact</a></div>
+<div><h4>Follow</h4><span id="soc"></span></div></div>
+<div class="bar"><a class="logo" href="index.html"><img class="li" alt=""><span class="bn"></span></a><span id="copy"></span></div></footer>
+<dialog id="dlg"><div class="rd" id="rd"></div></dialog>
 <script>
-const KEYS=['projects','photos','blogs','events','collabs','certs','stack'];
-const $=s=>document.querySelector(s);
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const uid=()=>Math.random().toString(36).slice(2,9);
-const bg=u=>u?`style="background-image:url('${esc(u)}')"`:'';
-const fmt=n=>{n=+n||0;return n>=1000?(n/1000).toFixed(n%1000?1:0)+'K':n};
-function seed(){const b=(title,desc,cat,author,hot,views,date)=>({id:uid(),title,desc,body:desc,img:'',link:'',meta:'',cat,author,hot,views,date});
- const D={profile:{name:'Your Name',role:'Computer Science Student',bio:'',hero:'',avatar:'',location:'',tags:'',since:'',email:'',github:'',pin:'admin123'}};KEYS.forEach(k=>D[k]=[]);
- D.blogs=[b('Artificial Intelligence Beyond Imaginations','How machine learning has moved from research papers into everyday tools, and what that means for students.','Technology','Your Name',true,12400,'2026-10-12'),b('Getting started with open source','A simple path from reading code to your first merged pull request.','Programming','Your Name',false,3200,'2026-09-20'),b('What I learned from my first hackathon','Notes on planning, teamwork and shipping a demo in 24 hours.','Career','Your Name',true,9800,'2026-08-30')];return D}
-let D;try{D=JSON.parse(localStorage.getItem('pf'))}catch(e){}
-if(!D||!D.profile)D=seed();KEYS.forEach(k=>{if(!Array.isArray(D[k]))D[k]=[]});
-D.blogcfg=Object.assign({site:'MY BLOG',heroTitle:'Discover Nice Articles Here',heroText:'All the articles and contents of the site are updated here and you can find them quickly and without any problems.',cats:'Technology, Programming, Design, Career',accent:'#2f5bff',portfolio:'',footer:'All rights reserved.'},D.blogcfg||{});D.subs=D.subs||[];
-const C=()=>D.blogcfg;
-function save(){try{localStorage.setItem('pf',JSON.stringify(D));return true}catch(e){alert('Storage is full. Use smaller images or paste image links.');return false}}
-const posts=()=>D.blogs.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-let q='',cat='All',page=1,sl=0,tm=null,tab='posts',ed=null;const PER=6;
-const au=p=>`<span class="au"><i>${esc((p.author||'A')[0].toUpperCase())}</i>${esc(p.author||'Author')}</span>`;
-const card=p=>`<article class="ar"><a class="im" href="#post-${p.id}" aria-label="${esc(p.title)}" ${bg(p.img)}>${p.hot?'<span class="hot">🔥</span>':''}${au(p)}</a><h3><a href="#post-${p.id}">${esc(p.title)}</a></h3><p class="ex">${esc(p.desc)}</p><div class="mt"><span>📅 ${esc(p.date||'')}</span><span>👁 ${fmt(p.views)} Viewers</span></div><a class="btn" href="#post-${p.id}">Read More</a></article>`;
-const head=()=>`<div class="w"><header class="hd"><a class="lg" href="#home"><i>${esc((C().site||'B')[0])}</i>${esc(C().site)}</a><nav class="nv"><a href="#home" class="on">Blog</a>${C().portfolio?`<a href="${esc(C().portfolio)}">Portfolio</a>`:''}<a href="#subscribe">Subscribe</a></nav><a class="btn wh sm" href="${esc(C().portfolio||'portfolio.html')}">Portfolio</a></header></div>`;
-const foot=()=>`<div class="w"><footer class="ft"><nav><a href="#home">Home</a><a href="#subscribe">Subscribe</a><a href="${esc(C().portfolio||'portfolio.html')}">Portfolio</a><a href="#admin" class="hid" aria-label="Admin">Admin</a></nav><b>${esc(C().site)}</b><span>© ${new Date().getFullYear()} ${esc(C().footer)}</span></footer></div>`;
-function route(){clearInterval(tm);const h=location.hash.slice(1)||'home';
- if(h==='admin')admin();else if(h.startsWith('post-'))post(h.slice(5));else{index();if(h==='subscribe')$('#sub').scrollIntoView()}}
-function index(){
- $('#root').innerHTML=head()+`<div class="w"><section class="hero"><h1>${esc(C().heroTitle)}</h1><p>${esc(C().heroText)}</p><div class="bar"><div class="sr"><input id="q" type="search" placeholder="Search…" aria-label="Search articles" value="${esc(q)}"></div><div class="cats" id="cats"></div></div></section><h2 class="sec">Articles</h2><div id="sld"></div><div class="dots" id="dots"></div><div class="gr" id="gr"></div><div class="pg" id="pg"></div></div><section class="sub" id="sub"><div class="w"><div><h2>Subscribe For New Content</h2><p class="mut">Get an update when a new article is published.</p></div><div class="f"><input id="em" type="email" placeholder="Your email" aria-label="Email"><button class="btn" onclick="subscribe()">Subscribe</button></div></div></section>`+foot();
- $('#q').oninput=e=>{q=e.target.value;page=1;draw()};draw();slides()}
-function draw(){
- const cs=['All'].concat(C().cats.split(',').map(s=>s.trim()).filter(Boolean));
- $('#cats').innerHTML=cs.map(c=>`<button class="${c===cat?'on':''}" onclick="cat='${esc(c)}';page=1;draw()">${esc(c)}</button>`).join('');
- const L=posts().filter(p=>(cat==='All'||(p.cat||'').toLowerCase()===cat.toLowerCase())&&(!q||(p.title+' '+p.desc+' '+(p.author||'')).toLowerCase().includes(q.toLowerCase())));
- const n=Math.max(1,Math.ceil(L.length/PER));if(page>n)page=n;
- $('#gr').innerHTML=L.length?L.slice((page-1)*PER,page*PER).map(card).join(''):'<div class="empty">No articles found.</div>';
- $('#pg').innerHTML=n<2?'':`<button aria-label="Previous" class="nx" onclick="go(${page-1})">‹</button>`+Array.from({length:n},(_,i)=>`<button class="${i+1===page?'on':''}" onclick="go(${i+1})">${i+1}</button>`).join('')+`<button aria-label="Next" class="nx" onclick="go(${page+1})">›</button>`}
-function go(p){const n=Math.ceil(posts().length/PER);page=Math.min(Math.max(1,p),n);draw();$('#gr').scrollIntoView({behavior:'smooth'})}
-function slides(){const P=posts(),F=P.filter(p=>p.hot).concat(P.filter(p=>!p.hot)).slice(0,3);if(!F.length){$('#sld').innerHTML='';$('#dots').innerHTML='';return}
- const show=()=>{const p=F[sl%F.length];$('#sld').innerHTML=`<div class="slide" ${bg(p.img)} onclick="location.hash='post-${p.id}'"><div>${au(p)}<h2>${esc(p.title)}</h2><p>${esc(p.desc)}</p></div></div>`;$('#dots').innerHTML=F.map((_,i)=>`<button class="${i===sl%F.length?'on':''}" aria-label="Slide ${i+1}" onclick="sl=${i};clearInterval(tm);show()"></button>`).join('')};
- sl=0;show();if(F.length>1&&!matchMedia('(prefers-reduced-motion: reduce)').matches)tm=setInterval(()=>{sl++;show()},5000)}
-function subscribe(){const e=$('#em').value.trim();if(!/^\S+@\S+\.\S+$/.test(e)){alert('Enter a valid email.');return}
- if(!D.subs.some(s=>s.email===e))D.subs.push({email:e,date:new Date().toISOString().slice(0,10)});if(save()){$('#em').value='';alert('Thanks for subscribing!')}}
-function post(id){const L=posts(),p=L.find(x=>x.id===id);if(!p){location.hash='home';return}
- if(!sessionStorage.getItem('v'+id)){p.views=(+p.views||0)+1;sessionStorage.setItem('v'+id,1);save()}
- const k=L.indexOf(p),nw=L[k-1],ol=L[k+1];
- const body=(p.body||p.desc||'').split(/\n{2,}/).map(t=>`<p>${esc(t).replace(/\n/g,'<br>')}</p>`).join('');
- $('#root').innerHTML=head()+`<div class="w"><article class="art"><div class="cv" ${bg(p.img)}></div><h1>${esc(p.title)}</h1><p class="mut">${au(p)} &nbsp;📅 ${esc(p.date||'')} &nbsp;👁 ${fmt(p.views)} Viewers ${p.cat?'&nbsp;•&nbsp; '+esc(p.cat):''}</p><br><div class="bd">${body}</div>${p.link?`<p><a class="btn" href="${esc(p.link)}" target="_blank" rel="noopener">Open link</a></p>`:''}<div class="pnv">${ol?`<a class="btn ol sm" href="#post-${ol.id}">← ${esc(ol.title)}</a>`:'<span></span>'}${nw?`<a class="btn ol sm" href="#post-${nw.id}">${esc(nw.title)} →</a>`:''}</div><a class="btn" href="#home">All articles</a></article></div>`+foot();scrollTo(0,0)}
-/* admin */
-function admin(){
- if(sessionStorage.getItem('ok')!=='1'){$('#root').innerHTML=head()+`<div class="w"><div class="pnl" style="max-width:380px;margin:50px auto"><h2>Admin sign in</h2><label>PIN</label><input id="pin" type="password" autofocus><div class="acts"><button class="btn" onclick="login()">Sign in</button><a class="btn ol" href="#home">Back</a></div><p class="mut">The PIN is shared with the portfolio admin. Default is admin123. It only keeps casual visitors out; it is not real security.</p></div></div>`;$('#pin').onkeydown=e=>{if(e.key==='Enter')login()};return}
- const T=[['posts','Posts'],['site','Site settings'],['subs','Subscribers ('+D.subs.length+')']];let b;
- if(tab==='posts'){const e=ed?(D.blogs.find(x=>x.id===ed)||{}):{};
-  b=`<div class="two"><div><h3>Posts (${D.blogs.length})</h3><br>${posts().map(i=>`<div class="row"><div class="th" ${bg(i.img)}></div><div class="t">${i.hot?'🔥 ':''}${esc(i.title)}</div><a class="btn ol sm" href="#post-${i.id}">View</a><button class="btn sm" onclick="ed='${i.id}';admin()">Edit</button><button class="btn red sm" onclick="del('${i.id}')">Delete</button></div>`).join('')||'<p class="mut">No posts yet.</p>'}</div>
-  <div><h3>${e.id?'Edit':'New'} post</h3>${fi('title','Title',e.title)}<label>Short description</label><textarea id="i_desc">${esc(e.desc)}</textarea><label>Full article (blank line = new paragraph)</label><textarea id="i_body" style="min-height:180px">${esc(e.body)}</textarea>${fi('cat','Category',e.cat)}${fi('author','Author',e.author)}${fi('views','Views',e.views||0,'number')}${fi('date','Date',e.date,'date')}${fi('link','Link (optional)',e.link)}<label>Cover image</label><input id="i_img" placeholder="Image link" value="${esc(e.img&&e.img.startsWith('data:')?'':e.img)}"><input type="file" accept="image/*" onchange="up(this,'i_img')">${e.img&&e.img.startsWith('data:')?'<p class="mut">An uploaded image is saved. Choose a new file to replace it.</p>':''}<label style="display:flex;gap:8px;align-items:center"><input id="i_hot" type="checkbox" style="width:auto" ${e.hot?'checked':''}> Hot / featured in slider</label><div class="acts"><button class="btn" onclick="savePost()">${e.id?'Save changes':'Add post'}</button>${e.id?'<button class="btn ol" onclick="ed=null;admin()">Cancel</button>':''}</div></div></div>`}
- else if(tab==='site'){const c=C();b=`<div class="two"><div>${fs('site','Site name',c.site)}${fs('heroTitle','Hero title',c.heroTitle)}${fs('cats','Categories (comma separated)',c.cats)}${fs('portfolio','Portfolio link (optional)',c.portfolio)}${fs('footer','Footer text',c.footer)}</div><div><label>Hero text</label><textarea id="s_heroText">${esc(c.heroText)}</textarea><label>Accent color</label><input id="s_accent" type="color" value="${c.accent}" style="height:44px;padding:3px"></div></div><div class="acts"><button class="btn" onclick="saveSite()">Save settings</button></div>`}
- else b=`<h3>Subscribers</h3><br>${D.subs.map((s,i)=>`<div class="row"><div class="t">${esc(s.email)}</div><span class="mut">${esc(s.date)}</span><button class="btn red sm" onclick="D.subs.splice(${i},1);save();admin()">Remove</button></div>`).join('')||'<p class="mut">No subscribers yet.</p>'}`;
- $('#root').innerHTML=head()+`<div class="w"><div class="pnl"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center"><h2>Blog admin</h2><span><a class="btn ol sm" href="#home">View blog</a> <button class="btn ol sm" onclick="sessionStorage.removeItem('ok');admin()">Sign out</button></span></div><div class="tabs">${T.map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="tab='${k}';ed=null;admin()">${l}</button>`).join('')}</div>${b}<hr style="border-color:#fff2;margin:22px 0"><div class="acts"><button class="btn ol sm" onclick="exp()">Export backup</button><label class="btn ol sm" style="margin:0;cursor:pointer;color:inherit">Import backup<input type="file" accept=".json" hidden onchange="imp(this)"></label></div><p class="mut">Posts here are the same posts as the Blogs section in the portfolio admin, as long as both pages are hosted on the same site.</p></div></div>`}
-const fi=(k,l,v,t)=>`<label>${l}</label><input id="i_${k}" type="${t||'text'}" value="${esc(v)}">`;
-const fs=(k,l,v)=>`<label>${l}</label><input id="s_${k}" value="${esc(v)}">`;
-function login(){if($('#pin').value===D.profile.pin){sessionStorage.setItem('ok','1');admin()}else alert('Wrong PIN. Try again.')}
-function up(inp,t){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const sc=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*sc;c.height=im.height*sc;c.getContext('2d').drawImage(im,0,0,c.width,c.height);document.getElementById(t).value=c.toDataURL('image/jpeg',.72);inp.insertAdjacentHTML('afterend','<p class="mut">Image ready. Save to keep it.</p>')};im.src=r.result};r.readAsDataURL(f)}
-function savePost(){const t=$('#i_title').value.trim();if(!t){alert('Add a title first.');return}
- const old=ed?D.blogs.find(x=>x.id===ed):null,img=$('#i_img').value||(old&&old.img&&old.img.startsWith('data:')?old.img:'');
- const o={id:old?old.id:uid(),title:t,desc:$('#i_desc').value,body:$('#i_body').value,cat:$('#i_cat').value.trim(),author:$('#i_author').value.trim(),views:+$('#i_views').value||0,date:$('#i_date').value,link:$('#i_link').value.trim(),img,hot:$('#i_hot').checked};
- if(old)Object.assign(old,o);else D.blogs.push(Object.assign({meta:''},o));ed=null;if(save())admin()}
-function del(id){if(!confirm('Delete this post?'))return;D.blogs=D.blogs.filter(x=>x.id!==id);ed=null;save();admin()}
-function saveSite(){const c=C();['site','heroTitle','cats','portfolio','footer','heroText','accent'].forEach(k=>c[k]=$('#s_'+k).value.trim());if(save()){theme();alert('Settings saved.');admin()}}
-function theme(){document.documentElement.style.setProperty('--ac',C().accent)}
-function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:'application/json'}));a.download='portfolio-backup.json';a.click()}
-function imp(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(!j.profile)throw 0;D=j;KEYS.forEach(k=>{if(!Array.isArray(D[k]))D[k]=[]});D.blogcfg=Object.assign(C?{}:{},D.blogcfg||{});save();location.reload()}catch(e){alert('That file is not a backup.')}};r.readAsText(f)}
-addEventListener('hashchange',route);theme();route();
+// Paste your Apps Script web app URL (ends in /exec). Leave empty to preview with demo data.
+const APPS_URL='https://script.google.com/macros/s/AKfycbxrOcYQQciUOYu8tvSgCcScAcMPcYpa5irlNNVUe8YYwMC44Svs93irhryfBs1RL1Va/exec';
+const LOGO='data:image/jpeg;base64,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';
+document.head.insertAdjacentHTML('beforeend','<link rel="icon" href="'+LOGO+'">');
+const LIVE=!!APPS_URL,PER=9;
+const DEF={brand:{name:'Nahid',role:'Computer science and business analytics engineer. I write about building software and turning data into decisions.'},listTitle:'Recent posts',
+ hero:{label:'Welcome',title:'Notes on code, data and the decisions they support',text:'I’m a computer science and business analytics engineer. Here I write about what I build, what I learn and what I get wrong along the way.',image:'',link:'#posts'},
+ cta:{title:'Let’s work on something together',text:'Open to internships, data projects and collaborations.',b1:'Email me',b1Link:'index.html#contact',b2:'See my projects',b2Link:'index.html#projects'},
+ footer:{copy:'© 2026 All rights reserved.',socials:{github:'',linkedin:'',x:'',youtube:'',facebook:'',instagram:'',email:''}}};
+const SEED=[['Computer science','SQL window functions I actually use','Running totals, rankings and gaps in time series, with queries you can copy.'],['Analytics','Power BI or Python for reporting?','A practical way to choose, based on who reads the report.'],['Career','What I learned in my first analytics project','Messy data, unclear questions, and how I handled both.'],['Computer science','Big-O without the textbook','Reading complexity from code you already wrote.']].map((x,i)=>({id:'d'+i,category:x[0],type:'article',title:x[1],excerpt:x[2],content:x[2],author:'Nahid',published_at:new Date(Date.now()-i*864e5*3).toISOString()}));
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const merge=(a,b)=>{for(const k in b)a[k]=b[k]&&typeof b[k]==='object'?merge(a[k]||{},b[k]):b[k];return a};
+const yt=u=>(String(u||'').match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/)||[])[1];
+const thumb=p=>p.image_url||(yt(p.youtube_url)?`https://img.youtube.com/vi/${yt(p.youtube_url)}/hqdefault.jpg`:'');
+const fmt=d=>new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+const safe=u=>/^(https?:|mailto:|tel:|#|[\w./-]+(\.html)?(#.*)?$)/i.test(u||'')?u:'#';
+let posts=[],list=[],shown=0,cat='All',S=JSON.parse(JSON.stringify(DEF));
+async function load(){
+ try{
+  if(LIVE){const d=await fetch(APPS_URL).then(r=>r.json());posts=d.posts||[];if(d.settings)merge(S,d.settings)}
+  else{posts=JSON.parse(localStorage.getItem('bg_blog_posts')||'null')||SEED;const s=localStorage.getItem('bg_blog_settings');if(s)merge(S,JSON.parse(s))}
+ }catch(e){posts=[]}
+ posts=posts.filter(p=>new Date(p.published_at)<=new Date());paint();filter()}
+function paint(){
+ const h=S.hero,n=S.brand.name||'Blog';document.title=n+' · Blog';
+ $$('.bn').forEach(e=>e.textContent=n);$$('.li').forEach(e=>e.src=LOGO);$('#role').textContent=S.brand.role;
+ $('#hl').textContent=h.label;$('#ht').textContent=h.title;$('#hx').textContent=h.text;
+ if(h.image)$('#hero').style.backgroundImage=`url("${h.image.replace(/"/g,'%22')}")`;
+ $('#ha').href=safe(h.link);$('#ha').hidden=!h.link;
+ $('#lt').textContent=S.listTitle;const c=S.cta;$('#ct').textContent=c.title;$('#cx').textContent=c.text;
+ $('#b1').textContent=c.b1;$('#b1').href=safe(c.b1Link);$('#b2').textContent=c.b2;$('#b2').href=safe(c.b2Link);
+ $('#copy').textContent=S.footer.copy;
+ $('#soc').innerHTML=Object.entries(S.footer.socials).filter(e=>e[1]).map(([k,v])=>{if(k==='email'&&!/^mailto:/.test(v))v='mailto:'+v;return`<a href="${esc(safe(v))}" target="_blank" rel="noopener">${k==='x'?'X':k[0].toUpperCase()+k.slice(1)}</a>`}).join('')||'<span style="color:#a0a4ab">Coming soon</span>'}
+function filter(c){
+ if(c)cat=c;const cats=[...new Set(posts.map(p=>p.category).filter(Boolean))];
+ $('#chips').innerHTML=cats.length?['All',...cats].map(x=>`<button class="${x===cat?'on':''}" data-c="${esc(x)}">${esc(x)}</button>`).join(''):'';
+ list=cat==='All'?posts:posts.filter(p=>p.category===cat);shown=0;$('#grid').innerHTML='';more()}
+function more(){
+ const g=$('#grid');if(!list.length){g.innerHTML='<p class="empty">No posts yet. Check back soon.</p>';$('#more').hidden=true;return}
+ g.insertAdjacentHTML('beforeend',list.slice(shown,shown+PER).map(p=>{const t=thumb(p);return`<button class="card" data-id="${esc(p.id)}"><div class="th ${yt(p.youtube_url)?'v':''}" ${t?`style="background-image:url('${esc(t)}')"`:''}></div><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><div class="by"><b>${esc((p.author||S.brand.name||'B')[0])}</b>${esc(p.author||S.brand.name)} • ${fmt(p.published_at)}</div></button>`}).join(''));
+ shown+=PER;$('#more').hidden=shown>=list.length}
+function openPost(id){
+ const p=posts.find(x=>String(x.id)===String(id));if(!p)return;const v=yt(p.youtube_url);
+ $('#rd').innerHTML=`<button class="x" onclick="dlg.close()" aria-label="Close">×</button>${v?`<iframe src="https://www.youtube-nocookie.com/embed/${v}" allowfullscreen loading="lazy" title="${esc(p.title)}"></iframe>`:p.image_url?`<img src="${esc(p.image_url)}" alt="">`:''}<h2>${esc(p.title)}</h2><div class="m">${esc(p.author||S.brand.name)} • ${fmt(p.published_at)}${p.category?' • '+esc(p.category):''}</div><div class="bd">${String(p.content||p.excerpt||'').split(/\n{2,}/).map(t=>`<p>${esc(t)}</p>`).join('')}</div>`;
+ dlg.showModal()}
+$('#grid').onclick=e=>{const c=e.target.closest('.card');if(c)openPost(c.dataset.id)};
+$('#chips').onclick=e=>{const b=e.target.closest('button');if(b)filter(b.dataset.c)};
+$('#more').onclick=more;dlg.onclick=e=>{if(e.target===dlg)dlg.close()};
+// Hidden admin entry: click the copyright line 5 times, or type "admin" anywhere on the page
+const ADMIN_PAGE='blog-admin.html';
+let ck=0,ct;$('#copy').onclick=()=>{ck++;clearTimeout(ct);ct=setTimeout(()=>ck=0,2500);if(ck>=5)location.href=ADMIN_PAGE};
+let ks='';addEventListener('keydown',e=>{if(/input|textarea|select/i.test(e.target.tagName)||!e.key)return;ks=(ks+e.key).slice(-5).toLowerCase();if(ks==='admin')location.href=ADMIN_PAGE});
+load();
 </script></body></html>

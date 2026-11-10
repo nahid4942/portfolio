@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Blog admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c0c0c;--mut:#667085;--line:#e6e8ec;--bg:#f6f7f9}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+button,input,select,textarea{font:inherit}
+.btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+.btn.s{background:#fff;color:var(--ink);border-color:var(--line)}.btn.d{background:#fff;color:#b42318;border-color:#fda29b}.btn.sm{padding:5px 10px;font-size:12px}
+input,select,textarea{width:100%;border:1px solid #d0d5dd;border-radius:8px;padding:9px 11px;background:#fff}
+textarea{min-height:90px;resize:vertical}label{display:block;font-weight:600;margin:14px 0 5px}.hint{color:var(--mut);font-size:12px;font-weight:400}
+#login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.box{background:#fff;border-radius:16px;padding:28px;width:100%;max-width:360px;border:1px solid var(--line)}
+.box h1{font-size:20px;margin-bottom:4px}.err{color:#b42318;margin-top:10px;min-height:18px}
+header{background:#fff;border-bottom:1px solid var(--line);padding:12px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.lg{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);object-fit:cover;display:block}
+header b{font-size:16px;margin-right:8px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;flex:1}.tabs button{background:none;border:0;padding:8px 12px;border-radius:8px;font-weight:600;color:var(--mut);cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff}
+main{max-width:860px;margin:24px auto;padding:0 16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}
+.row img,.row .ph{width:64px;height:44px;border-radius:8px;object-fit:cover;background:#e5e7eb;flex:none}
+.row .t{flex:1;min-width:0}.row .t b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row .t span{color:var(--mut);font-size:12px}
+.pill{background:#eef2ff;color:#3538cd;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.prev{margin-top:8px;max-height:140px;border-radius:10px;display:block}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.top h2{font-size:18px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;opacity:0;transition:.2s;pointer-events:none}
+#toast.on{opacity:1}[hidden]{display:none!important}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+</style></head><body>
+<div id="login"><form class="box" id="lf"><img class="lg" alt="" style="width:56px;height:56px;margin-bottom:12px"><h1>Blog admin</h1><p class="hint">Sign in to manage posts and page content.</p>
+<label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" required>
+<button class="btn" style="width:100%;margin-top:16px">Sign in</button><p class="err" id="le"></p></form></div>
+<div id="app" hidden>
+<header><img class="lg" alt=""><b>Blog admin</b><div class="tabs" id="tabs"></div><a class="btn s sm" href="blog.html" target="_blank">View blog</a><button class="btn s sm" id="out">Sign out</button></header>
+<main id="main"></main></div><div id="toast"></div>
+<script>
+// Paste the same Apps Script web app URL (ends in /exec) as in blog.html. Leave empty for local demo mode.
+const APPS_URL='https://script.google.com/macros/s/AKfycbxrOcYQQciUOYu8tvSgCcScAcMPcYpa5irlNNVUe8YYwMC44Svs93irhryfBs1RL1Va/exec';
+const LOGO='data:image/jpeg;base64,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';
+document.head.insertAdjacentHTML('beforeend','<link rel="icon" href="'+LOGO+'">');
+document.querySelectorAll('.lg').forEach(e=>e.src=LOGO);
+const LIVE=!!APPS_URL;
+const DEMO_PW='admin123'; // demo mode only
+const DEF={brand:{name:'Nahid',role:'Computer science and business analytics engineer. I write about building software and turning data into decisions.'},listTitle:'Recent posts',
+ hero:{label:'Welcome',title:'Notes on code, data and the decisions they support',text:'I’m a computer science and business analytics engineer. Here I write about what I build, what I learn and what I get wrong along the way.',image:'',link:'#posts'},
+ cta:{title:'Let’s work on something together',text:'Open to internships, data projects and collaborations.',b1:'Email me',b1Link:'index.html#contact',b2:'See my projects',b2Link:'index.html#projects'},
+ footer:{copy:'© 2026 All rights reserved.',socials:{github:'',linkedin:'',x:'',youtube:'',facebook:'',instagram:'',email:''}}};
+const SPEC={
+ hero:[['hero.image','Banner image','img'],['hero.label','Label above the headline'],['hero.title','Headline'],['hero.text','Description','area'],['hero.link','Arrow button link','','Leave empty to hide the arrow']],
+ sect:[['brand.name','Your name or blog name'],['brand.role','Short bio in the footer','area'],['listTitle','Posts section title'],['cta.title','Call-to-action title'],['cta.text','Call-to-action text'],['cta.b1','Button 1 text'],['cta.b1Link','Button 1 link'],['cta.b2','Button 2 text'],['cta.b2Link','Button 2 link']],
+ foot:[['footer.copy','Copyright text'],...['github','linkedin','x','youtube','facebook','instagram','email'].map(k=>['footer.socials.'+k,(k==='x'?'X':k[0].toUpperCase()+k.slice(1))+(k==='email'?' address':' URL'),'','Leave empty to hide'])]};
+const TABS=[['posts','Posts'],['edit','New post'],['hero','Hero banner'],['sect','Site & section texts'],['foot','Footer & socials'],['ai','AI prompts'],['acct','Account']];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const get=(o,p)=>p.split('.').reduce((a,k)=>a?.[k],o);
+const put=(o,p,v)=>{const k=p.split('.');let a=o;k.slice(0,-1).forEach(x=>a=a[x]=a[x]||{});a[k.pop()]=v};
+const merge=(a,b)=>{for(const k in b)a[k]=b[k]&&typeof b[k]==='object'?merge(a[k]||{},b[k]):b[k];return a};
+const yt=u=>(String(u||'').match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/)||[])[1];
+const toLocalInput=iso=>{const d=new Date(iso);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)};
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)};
+let tok=sessionStorage.getItem('bg_tok')||'',posts=[],S=JSON.parse(JSON.stringify(DEF)),cur=null;
+const authed=()=>LIVE?!!tok:sessionStorage.getItem('bg_ok')==='1';
+const pw=()=>localStorage.getItem('bg_admin_pw')||DEMO_PW;
+// Apps Script expects a plain-text POST body (avoids browser preflight)
+async function call(action,data={}){
+ const r=await fetch(APPS_URL,{method:'POST',body:JSON.stringify({action,token:tok,...data})});
+ const d=await r.json();
+ if(!d.ok){if(/expired/i.test(d.error||'')){sessionStorage.clear();toast(d.error);setTimeout(()=>location.reload(),1200)}throw new Error(d.error||'Request failed')}
+ return d}
+async function fetchAll(){
+ if(LIVE){const d=await call('list');posts=d.posts||[];if(d.settings)merge(S,d.settings)}
+ else{posts=JSON.parse(localStorage.getItem('bg_blog_posts')||'[]');const s=localStorage.getItem('bg_blog_settings');if(s)merge(S,JSON.parse(s))}}
+const saveSettings=async()=>LIVE?call('saveSettings',{settings:S}):localStorage.setItem('bg_blog_settings',JSON.stringify(S));
+async function savePost(p){
+ if(LIVE){await call('savePost',{post:p});await fetchAll()}
+ else{if(p.id)posts=posts.map(x=>x.id===p.id?p:x);else posts.unshift({...p,id:'p'+Date.now()});localStorage.setItem('bg_blog_posts',JSON.stringify(posts))}}
+async function delPost(id){
+ if(LIVE){await call('deletePost',{id});await fetchAll()}
+ else{posts=posts.filter(x=>x.id!==id);localStorage.setItem('bg_blog_posts',JSON.stringify(posts))}}
+const shrink=f=>new Promise(r=>{const i=new Image();i.onload=()=>{const s=Math.min(1,1400/i.width),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.82))};i.src=URL.createObjectURL(f)});
+async function upload(f){
+ const u=await shrink(f);
+ if(!LIVE)return u;
+ return (await call('upload',{data:u.split(',')[1],name:f.name.replace(/\.\w+$/,'')+'.jpg',type:'image/jpeg'})).url}
+function field(p,label,kind,hint,v){
+ const id='f_'+p.replace(/\./g,'_');
+ if(kind==='area')return`<label for="${id}">${label}</label><textarea id="${id}" data-p="${p}">${esc(v)}</textarea>`;
+ if(kind==='img')return`<label for="${id}">${label} <span class="hint">upload a file or paste a link</span></label><input id="${id}" data-p="${p}" value="${esc(v)}" placeholder="https://…"><input type="file" accept="image/*" data-for="${id}" style="margin-top:6px"><img class="prev" id="${id}_pv" ${v?`src="${esc(v)}"`:'hidden'} alt="">`;
+ return`<label for="${id}">${label} ${hint?`<span class="hint">${hint}</span>`:''}</label><input id="${id}" data-p="${p}" value="${esc(v)}">`}
+function view(v){
+ document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+ const m=$('#main');
+ if(v==='posts'){m.innerHTML=`<div class="panel"><div class="top"><h2>Posts (${posts.length})</h2><button class="btn" data-go="new">New post</button></div>${posts.map(p=>{const t=p.image_url||(yt(p.youtube_url)?`https://img.youtube.com/vi/${yt(p.youtube_url)}/default.jpg`:'');return`<div class="row">${t?`<img src="${esc(t)}" alt="">`:'<div class="ph"></div>'}<div class="t"><b>${esc(p.title)}</b><span>${new Date(p.published_at).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'})} · ${esc(p.category||'No category')}</span></div>${new Date(p.published_at)>new Date()?'<span class="pill" style="background:#fef3c7;color:#92400e">Scheduled</span>':''}<span class="pill">${esc(p.type)}</span><button class="btn s sm" data-edit="${esc(p.id)}">Edit</button><button class="btn d sm" data-del="${esc(p.id)}">Delete</button></div>`}).join('')||'<p class="hint" style="padding:20px 0">No posts yet. Add your first one.</p>'}</div>`}
+ else if(v==='edit'){const p=cur||{type:'article',published_at:new Date().toISOString()};
+  m.innerHTML=`<div class="panel"><div class="top"><h2>${p.id?'Edit post':'New post'}</h2></div>
+  <div class="two"><div><label for="p_type">Post type</label><select id="p_type"><option value="article">Article</option><option value="video">Video</option><option value="podcast">Podcast</option></select></div><div><label for="p_date">Publish date and time <span class="hint">a future time schedules the post</span></label><input type="datetime-local" id="p_date" value="${toLocalInput(p.published_at)}"></div></div>
+  <label for="p_cat">Category <span class="hint">becomes a filter on the blog, e.g. Computer science, Analytics, Career</span></label><input id="p_cat" list="cats" value="${esc(p.category)}"><datalist id="cats">${[...new Set(posts.map(x=>x.category).filter(Boolean))].map(c=>`<option value="${esc(c)}">`).join('')}</datalist>
+  <label for="p_title">Title</label><input id="p_title" value="${esc(p.title)}">
+  <label for="p_ex">Short description <span class="hint">shown on the card</span></label><textarea id="p_ex" style="min-height:60px">${esc(p.excerpt)}</textarea>
+  <label for="p_ct">Full post <span class="hint">blank line = new paragraph</span></label><textarea id="p_ct" style="min-height:180px">${esc(p.content)}</textarea>
+  <label for="p_au">Author</label><input id="p_au" value="${esc(p.author||S.brand.name)}">
+  ${field('image_url','Cover image','img','',p.image_url||'')}
+  <label for="p_yt">YouTube link <span class="hint">optional. Turns the card into a video card with a play button</span></label><input id="p_yt" value="${esc(p.youtube_url)}" placeholder="https://www.youtube.com/watch?v=…">
+  <div style="margin-top:20px;display:flex;gap:8px"><button class="btn" id="sp">${p.id?'Save changes':'Publish post'}</button><button class="btn s" data-go="posts">Cancel</button></div></div>`;
+  $('#p_type').value=p.type||'article'}
+ else if(v==='ai'){m.innerHTML=`<div class="panel" id="aiw"><div class="top"><h2>AI prompt builder</h2></div><p class="hint">Pick a template, fill in the details, copy the prompt into any AI model, then paste its answer into New post (Title, Short description, Category and Post match the form fields).</p>
+  <label for="ai_t">Template (20)</label><select id="ai_t">${Object.entries(CATS).map(([c,n])=>`<optgroup label="${n}">${TPL.map((t,i)=>t[0]===c?`<option value="${i}">${esc(t[1])}</option>`:'').join('')}</optgroup>`).join('')}</select>
+  <div id="ai_f">${aiFields(0)}</div>
+  <div class="two"><div><label for="ai_aud">Audience</label><input id="ai_aud" value="university students and early-career engineers"></div><div><label for="ai_lang">Language</label><input id="ai_lang" value="English"></div>
+  <div><label for="ai_tone">Tone</label><select id="ai_tone"><option>friendly and clear</option><option>professional</option><option>conversational</option><option>academic but readable</option></select></div>
+  <div><label for="ai_len">Length</label><select id="ai_len"><option>600</option><option selected>900</option><option>1300</option><option>1800</option></select></div>
+  <div><label for="ai_voice">Voice</label><select id="ai_voice"><option>first person (I)</option><option>neutral, no first person</option></select></div></div>
+  <label for="ai_out">Your prompt</label><textarea id="ai_out" style="min-height:280px" readonly></textarea>
+  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="aic">Copy prompt</button><a class="btn s" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude</a><a class="btn s" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="btn s" href="https://gemini.google.com/app" target="_blank" rel="noopener">Open Gemini</a></div></div>`;aiBuild()}
+ else if(v==='acct'){m.innerHTML=`<div class="panel"><div class="top"><h2>Change password</h2></div>${LIVE?'':'<p class="hint">Demo mode: stored in this browser only. Connect the Apps Script for real protection.</p>'}<label for="np">New password <span class="hint">at least 8 characters</span></label><input id="np" type="password" autocomplete="new-password"><div style="margin-top:16px"><button class="btn" id="spw">Update password</button></div></div>`}
+ else{const T={hero:'Hero banner',sect:'Site & section texts',foot:'Footer & socials'}[v];
+  m.innerHTML=`<div class="panel"><div class="top"><h2>${T}</h2></div><div id="sf">${SPEC[v].map(f=>field(f[0],f[1],f[2],f[3],get(S,f[0])??'')).join('')}</div><div style="margin-top:20px"><button class="btn" id="ss">Save changes</button></div></div>`}}
+document.addEventListener('click',async e=>{
+ const t=e.target.closest('button');if(!t)return;
+ try{
+ if(t.dataset.v){if(t.dataset.v==='edit')cur=null;view(t.dataset.v)}
+ else if(t.dataset.go){cur=null;view(t.dataset.go==='new'?'edit':'posts')}
+ else if(t.dataset.edit){cur=posts.find(p=>String(p.id)===t.dataset.edit);view('edit')}
+ else if(t.dataset.del){if(confirm('Delete this post? This cannot be undone.')){await delPost(t.dataset.del);toast('Deleted');view('posts')}}
+ else if(t.id==='sp'){
+  const title=$('#p_title').value.trim();if(!title)return toast('Add a title first');
+  const y=$('#p_yt').value.trim();if(y&&!yt(y))return toast('That YouTube link looks wrong');
+  const type=$('#p_type').value;t.disabled=true;
+  try{await savePost({id:cur?.id,type:y&&type==='article'?'video':type,category:$('#p_cat').value.trim(),title,excerpt:$('#p_ex').value.trim(),content:$('#p_ct').value,author:$('#p_au').value.trim(),image_url:$('#f_image_url').value.trim(),youtube_url:y,published_at:new Date($('#p_date').value||Date.now()).toISOString()})}finally{t.disabled=false}
+  const fut=new Date($('#p_date').value)>new Date();cur=null;toast(fut?'Scheduled':'Published');view('posts')}
+ else if(t.id==='ss'){document.querySelectorAll('#sf [data-p]').forEach(i=>put(S,i.dataset.p,i.value.trim()));await saveSettings();toast('Saved')}
+ else if(t.id==='spw'){const n=$('#np').value;if(n.length<8)return toast('Use at least 8 characters');
+  if(LIVE)await call('changePassword',{newPassword:n});else localStorage.setItem('bg_admin_pw',n);$('#np').value='';toast('Password updated')}
+ else if(t.id==='aic'){const o=$('#ai_out');try{await navigator.clipboard.writeText(o.value)}catch{o.select();document.execCommand('copy')}toast('Prompt copied')}
+ else if(t.id==='out'){sessionStorage.clear();location.reload()}
+ }catch(err){toast('Something went wrong: '+String(err.message).slice(0,80))}});
+document.addEventListener('change',async e=>{
+ const f=e.target;if(!f.dataset.for||!f.files[0])return;
+ try{toast('Uploading…');const u=await upload(f.files[0]);const i=document.getElementById(f.dataset.for);i.value=u;const pv=document.getElementById(f.dataset.for+'_pv');pv.src=u;pv.hidden=false;toast('Image added')}catch(err){toast('Upload failed. Check the script deployment.')}});
+document.addEventListener('input',aiEv);document.addEventListener('change',aiEv);
+document.addEventListener('input',e=>{if(e.target.id==='p_date'&&!cur?.id)$('#sp').textContent=new Date(e.target.value)>new Date()?'Schedule post':'Publish post';if(e.target.dataset.p){const pv=document.getElementById(e.target.id+'_pv');if(pv){pv.src=e.target.value;pv.hidden=!e.target.value}}});
+// ---- AI prompt templates: [category, name, 'key:Label:placeholder|…', prompt with {key}] ----
+const CATS={tech:'Tech',sch:'Scholarships',ms:'Masters programs',pr:'Projects',news:'News',th:'Thesis'};
+const TPL=[
+['tech','Explain a concept','topic:Topic:e.g. vector databases','Write an explainer on "{topic}". Give a plain-language definition, how it works, one real-world example, common mistakes, and when to use it or not.'],
+['tech','Step-by-step tutorial','topic:What to build or learn:e.g. a REST API with FastAPI|stack:Tools and versions:e.g. Python 3.12, PostgreSQL','Write a hands-on tutorial on "{topic}" using {stack}. Include prerequisites, numbered steps with short code shown as plain text, how to test it, and troubleshooting tips. Check that commands and package versions are current.'],
+['tech','Compare two technologies','a:Option A:e.g. Power BI|b:Option B:e.g. Tableau|use:Use case:e.g. company dashboards','Compare {a} and {b} for {use}. Cover cost, learning curve, performance, ecosystem and limits, then give a clear recommendation for different situations.'],
+['tech','Latest trends in a field','field:Field:e.g. generative AI for analytics|focus:Focus (optional):e.g. tools to learn this year','Write about the most important recent developments in {field}, focusing on {focus}. Separate real shifts from hype and say what a student or junior engineer should learn next.'],
+['sch','Scholarship guide','name:Scholarship:e.g. Chevening|country:Country or provider:e.g. United Kingdom','Write a complete guide to the {name} scholarship ({country}). Cover who can apply, what it pays for, the current application window, required documents, selection steps and common reasons applicants are rejected. Point every deadline to the official page.'],
+['sch','Open scholarships roundup','level:Study level:e.g. masters|field:Field or country:e.g. computer science in Europe|n:How many:e.g. 8','Write a roundup of {n} scholarships that are open now or opening soon for {level} students in {field}. For each, give the provider, benefits, eligibility, deadline and official link. Skip any that have closed.'],
+['sch','Application tips','name:Scholarship:e.g. DAAD|background:Applicant background:e.g. CS graduate, 2 years of experience','Write practical advice on winning the {name} scholarship for this applicant: {background}. Cover the motivation letter, recommendation letters, CV, interview and a month-by-month timeline.'],
+['ms','Program review','program:Program:e.g. MSc Data Science|uni:University:e.g. TU Munich','Write a review of the {program} at {uni}. Cover curriculum, admission requirements, tuition and living costs, language needs, funding, career outcomes and who it suits.'],
+['ms','Compare programs or countries','field:Field:e.g. business analytics|places:Countries or universities:e.g. Germany, Netherlands, Canada','Compare masters programs in {field} across {places}. Use the same criteria for each: tuition, duration, entry requirements, scholarships, job market and post-study visa options.'],
+['ms','Admission roadmap','field:Field:e.g. computer science|country:Country:e.g. Germany|background:Your background:e.g. final-year BSc student','Write an admission roadmap for a masters in {field} in {country} for someone with this background: {background}. Give a month-by-month plan covering language tests, documents, applications, funding and visa.'],
+['pr','Project ideas','area:Skill or area:e.g. SQL and Power BI|level:Level:e.g. beginner to intermediate|n:How many:e.g. 10','Suggest {n} project ideas in {area} for {level} learners. For each, give the goal, data sources, tools, expected output, difficulty and what it shows to employers.'],
+['pr','Project write-up','name:Project name:|what:What it does:|stack:Tech stack:|results:Results or lessons:','Write a case study of my project "{name}" using only these facts. What it does: {what}. Stack: {stack}. Results and lessons: {results}. Explain the problem, my approach, key decisions, challenges and what I would improve. Do not add features or numbers I did not give you.'],
+['pr','Build walkthrough','name:Project:e.g. sales dashboard|stack:Stack:e.g. Python, SQL, Streamlit|steps:Main steps (optional):','Write a walkthrough of how to build "{name}" with {stack}. Main steps: {steps}. Explain the design choices, show key snippets as plain text and end with ideas to extend it.'],
+['news','News summary','topic:Topic:e.g. AI regulation|days:Past how many days:e.g. 7','Summarize the most important news about {topic} from the past {days} days. Group stories by theme, give the date and source of each, and explain in one line why it matters.'],
+['news','News analysis','event:Event or announcement:|who:Who it affects:e.g. students and junior developers','Explain what "{event}" means for {who}. Cover what happened, background, likely effects, different viewpoints and what readers could do about it.'],
+['news','Weekly digest','field:Field:e.g. data and analytics|n:Number of items:e.g. 5','Write a weekly digest for {field} with the {n} most useful items from the past 7 days: news, tools, research or opportunities. Give each a short summary, date, source and why it is worth reading.'],
+['th','Thesis topic ideas','field:Field:e.g. business analytics|level:Level:e.g. masters|interest:Interests:e.g. retail forecasting, NLP','Suggest 8 thesis topics in {field} for a {level} student interested in {interest}. For each give the research question, possible data, method, feasibility and why it is timely now.'],
+['th','Literature review overview','topic:Topic:|years:Years to focus on:e.g. 2020 to now','Write an overview of the research on "{topic}" from {years}. Cover main themes, key findings, open debates and research gaps. Name only papers you can verify and give links or DOIs.'],
+['th','Choosing a research method','topic:Research topic:|data:Data you have or can get:','Explain how to choose a research method for a thesis on "{topic}" given this data: {data}. Compare quantitative, qualitative and mixed approaches, name suitable statistical or ML methods, and describe common validity threats.'],
+['th','Share my thesis','title:Thesis title:|findings:Main findings:|method:Method and data:','Write a reader-friendly post about my thesis "{title}" using only these facts. Method and data: {method}. Findings: {findings}. Explain the question, why it matters, how I did it, what I found, limits and next steps in plain language. Do not invent results.']];
+const aiFields=i=>TPL[i][2].split('|').map(f=>f.split(':')).map(([k,l,p])=>`<label for="a_${k}">${l}</label><input id="a_${k}" placeholder="${esc(p)}">`).join('');
+function aiBuild(){
+ const t=TPL[$('#ai_t').value];let body=t[3];
+ t[2].split('|').forEach(f=>{const k=f.split(':')[0];body=body.split('{'+k+'}').join($('#a_'+k).value.trim()||'(choose a sensible option)')});
+ const today=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+ $('#ai_out').value=`You are helping me write a post for my personal blog. I am a computer science and business analytics engineer${S.brand.name?' ('+S.brand.name+')':''}.
+
+Today's date is ${today}. If you can browse or search the web, base the post on the most recent reliable sources, with official sites first. If you cannot verify something, say so instead of guessing. Never invent deadlines, fees, rankings, quotes, papers or statistics.
+
+TASK
+${body}
+
+AUDIENCE: ${$('#ai_aud').value}
+TONE: ${$('#ai_tone').value}
+LENGTH: about ${$('#ai_len').value} words
+LANGUAGE: ${$('#ai_lang').value}
+VOICE: ${$('#ai_voice').value}
+
+FORMAT (plain text only, no markdown symbols, no emojis, no tables):
+Title: one line, under 70 characters
+Short description: under 160 characters, for the blog card
+Category: one of Computer science, Analytics, Career, Scholarships, Masters, Projects, News, Thesis
+Post: short paragraphs separated by one blank line. A heading is a short line on its own with a blank line before and after it.
+Sources: every link you used, with the date you checked it. Keep links out of the post text.
+Check before publishing: every deadline, fee, date or number I should confirm on the official page.`}
+function aiEv(e){if(!e.target.closest('#aiw'))return;if(e.target.id==='ai_t')$('#ai_f').innerHTML=aiFields(+e.target.value);aiBuild()}
+async function start(){$('#login').hidden=true;$('#app').hidden=false;$('#tabs').innerHTML=TABS.map(t=>`<button data-v="${t[0]}">${t[1]}</button>`).join('');try{await fetchAll()}catch(e){toast('Could not load data. Check APPS_URL.')}view('posts')}
+$('#lf').onsubmit=async e=>{e.preventDefault();$('#le').textContent='';const b=e.target.querySelector('button');b.disabled=true;
+ try{if(LIVE){const r=await fetch(APPS_URL,{method:'POST',body:JSON.stringify({action:'login',password:$('#lp').value})});const d=await r.json();if(!d.ok)throw 0;tok=d.token;sessionStorage.setItem('bg_tok',tok)}
+ else{if($('#lp').value!==pw())throw 0;sessionStorage.setItem('bg_ok','1')}start()}catch{$('#le').textContent='Wrong password, or the script URL is not reachable. Try again.'}b.disabled=false};
+if(authed())start();
+</script></body></html>
