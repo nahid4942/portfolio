@@ -16,37 +16,66 @@ function setPassword() {
   if (NEW_PASSWORD.length < 8) throw new Error('Use at least 8 characters');
   PropertiesService.getScriptProperties().setProperty('PW', hash_(NEW_PASSWORD));
 }
+// Run this once after pasting new code. It only grants permissions and creates the "Blog data" sheet if needed.
+function authorize() {
+  ss_();
+  DriveApp.getRootFolder();
+}
 function hash_(s) {
   return Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, 'blog-salt:' + s));
 }
 function out_(o) {
   return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
 }
+function ss_() {
+  // Works for scripts created inside a Sheet and for standalone scripts (creates "Blog data" once)
+  let ss = SpreadsheetApp.getActive();
+  if (ss) return ss;
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty('SHEET_ID');
+  if (id) return SpreadsheetApp.openById(id);
+  ss = SpreadsheetApp.create('Blog data');
+  props.setProperty('SHEET_ID', ss.getId());
+  return ss;
+}
 function sheet_(name) {
-  const ss = SpreadsheetApp.getActive();
+  const ss = ss_();
   let s = ss.getSheetByName(name);
-  if (!s) { s = ss.insertSheet(name); if (name === 'posts') s.appendRow(HEAD); }
+  if (!s) s = ss.insertSheet(name);
+  if (name === 'posts' && s.getLastRow() === 0) s.appendRow(HEAD);
   return s;
 }
-function readPosts_() {
+function readPosts_(all) {
   const v = sheet_('posts').getDataRange().getValues().slice(1);
   return v.filter(r => r[0]).map(r => {
     const o = {};
     HEAD.forEach((k, i) => o[k] = r[i] instanceof Date ? r[i].toISOString() : String(r[i] === null ? '' : r[i]));
     return o;
-  }).sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+  }).filter(p => all || new Date(p.published_at) <= new Date())
+    .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
 }
 function readSettings_() {
   const t = sheet_('settings').getRange('A1').getValue();
   try { return t ? JSON.parse(t) : {}; } catch (e) { return {}; }
 }
 function doGet() {
-  return out_({ posts: readPosts_(), settings: readSettings_() });
+  try {
+    return out_({ posts: readPosts_(), settings: readSettings_() });
+  } catch (err) {
+    return out_({ posts: [], settings: {}, error: String(err.message || err) });
+  }
 }
 function authed_(t) {
   return t && CacheService.getScriptCache().get('tok_' + t) === '1';
 }
 function doPost(e) {
+  try {
+    return handle_(e);
+  } catch (err) {
+    return out_({ ok: false, error: String(err.message || err) });
+  }
+}
+function handle_(e) {
   let d;
   try { d = JSON.parse(e.postData.contents); } catch (x) { return out_({ ok: false, error: 'Bad request' }); }
   if (d.action === 'login') {
@@ -60,6 +89,7 @@ function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
+    if (d.action === 'list') return out_({ ok: true, posts: readPosts_(true), settings: readSettings_() });
     if (d.action === 'savePost') {
       const s = sheet_('posts'), p = d.post;
       let row = 0;
