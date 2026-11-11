@@ -1,0 +1,21 @@
+/* Shared content store. Source of truth = the shared Apps Script backend (site-backend.gs); localStorage is a cache/offline fallback. */
+const APPS_URL='https://script.google.com/macros/s/AKfycbxVvNxI-bXLQDbe8OwC61lCa_WUIDNoWLewcQ2vPzLBe-7StFlkO1HbkB5D18NuTGid/exec';
+const ready=()=>/^https:\/\/script\.google\.com\//.test(APPS_URL);
+const TOK=()=>{try{return JSON.parse(sessionStorage.getItem('pf_tok')).t}catch(e){return ''}};
+const api=b=>fetch(APPS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b)}).then(r=>r.json());
+async function fetchRemote(){if(!ready())return null;try{const r=await(await fetch(APPS_URL+'?only=portfolio')).json();if(r.portfolio&&r.portfolio.site){localStorage.setItem(KEY,JSON.stringify(r.portfolio));return load()}}catch(e){}return null}
+const KEY='pf_data';
+const DEF={
+site:{name:'Alex Chen',title:'Computer Science & Business Analytics Student',sub:'Computer Science & Business Analytics student passionate about turning complex data into actionable insights and scalable software applications.',photo:'',resume:'',status:'avail',email:'alex@example.com',linkedin:'https://linkedin.com/in/alexchen',github:'https://github.com/alexchen',philosophy:'I believe code is only as powerful as the business problem it solves. My approach combines rigorous software engineering principles with data analytics to turn raw, complex data into strategic leverage.'},
+order:[['metrics','Metrics Bar'],['philosophy','Personal Philosophy'],['projects','Projects & Case Studies'],['demos','Live Demos'],['skills','Skills Matrix'],['testimonials','Testimonials'],['courses','Coursework & Certifications']].map(([id,name])=>({id,name,on:true})),
+metrics:[{value:'3+',label:'ML Models Deployed',sub:'Production-ready pipelines'},{value:'40%',label:'Data Processing Speedup',sub:'Optimised SQL & ETL'},{value:'15+',label:'Dashboards Built',sub:'Tableau & Power BI'}],
+projects:[{title:'Customer Churn Prediction',thumb:'',category:'Machine Learning',problem:'A subscription business was losing customers with no early-warning signal. Task: predict who would churn and explain why.',stack:'Python, XGBoost, SQL, AWS',action:'Engineered behavioural features in SQL, trained and tuned an XGBoost model, and deployed scoring on AWS.',impact:'87% accuracy, reducing churn by 12%',demo:'',repo:'https://github.com/'}],
+skills:[{cat:'Data Engineering & Analytics',tags:'SQL, Python, Pandas, ETL, Tableau, Power BI'},{cat:'Software & Web Development',tags:'JavaScript, React, Node.js, Git, REST APIs'},{cat:'Machine Learning & Modeling',tags:'scikit-learn, XGBoost, TensorFlow, Feature Engineering'},{cat:'Business & Strategy',tags:'KPI Design, A/B Testing, Stakeholder Reporting'}],
+demos:[{title:'Sales Performance Dashboard',type:'Tableau',url:'https://public.tableau.com/',status:'Live'},{title:'Churn Model Notebook',type:'Colab',url:'https://colab.research.google.com/',status:'Live'},{title:'Retail Demand Dataset',type:'Kaggle',url:'https://www.kaggle.com/',status:'Published'}],
+courses:[{title:'AWS Certified Cloud Practitioner',kind:'Certification',date:'2025',url:''},{title:'Google Data Analytics Certificate',kind:'Certification',date:'2025',url:''},{title:"Dean's List",kind:'Award',date:'2024',url:''},{title:'Machine Learning',kind:'Course',date:'2025',url:''},{title:'Database Systems',kind:'Course',date:'2024',url:''}],
+testimonials:[{quote:'Outstanding analytical thinking and professional delivery. Alex turned messy data into decisions we acted on.',name:'Sarah Jenkins',role:'Head of Analytics',company:'Acme Corp',photo:'',rating:5}]};
+const load=()=>{try{const d=JSON.parse(localStorage.getItem(KEY));if(d)return{...structuredClone(DEF),...d}}catch(e){}return structuredClone(DEF)};
+let _t;const save=d=>{localStorage.setItem(KEY,JSON.stringify(d));if(!ready())return;clearTimeout(_t);_t=setTimeout(async()=>{let r;try{r=await api({action:'savePortfolio',token:TOK(),portfolio:d})}catch(e){r={ok:false,error:'Network error'}}window.onsync&&window.onsync(r)},400)};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const tags=s=>String(s||'').split(',').map(x=>x.trim()).filter(Boolean);
+const safe=u=>/^(https?:|mailto:|data:application\/pdf|data:image\/)/i.test(u||'')?u:'#';

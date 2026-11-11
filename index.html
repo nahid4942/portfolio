@@ -1,170 +1,78 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CS Student Portfolio</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Portfolio</title><link rel="icon" href="logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#3a3840;--pan:#46434b;--gold:#f9a825;--gd:#7a5f2c;--tx:#f6f2ea;--mut:#bdb8ae;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}h2,h3,p,.t{overflow-wrap:anywhere}img{max-width:100%}
-body{margin:0;min-height:100vh;color:var(--tx);font:15px/1.5 "Trebuchet MS","Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 15% 90%,var(--gold) 0,transparent 45%),radial-gradient(circle at 90% 10%,#d8d4cc 0,transparent 40%),var(--gd)}
-button,input,textarea,select{font:inherit;color:inherit}
-.shell{margin:0;padding:0}
-.app{display:grid;grid-template-columns:76px 1fr 270px;gap:8px;background:var(--bg);border-radius:0;padding:6px;min-height:calc(100vh - 26px);min-height:calc(100dvh - 26px)}
-.rail{background:var(--gd);border-radius:26px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0}
-.logo{width:42px;height:42px;border-radius:14px;background:var(--gold);color:#3a3840;font:900 20px Impact,sans-serif;display:grid;place-items:center;margin-bottom:10px}
-.rail button{width:46px;height:46px;border:0;border-radius:50%;background:none;color:var(--gold);font-size:19px;cursor:pointer}
-.rail button.on{background:var(--gold);color:#3a3840}.rail button:focus-visible,.btn:focus-visible,.card:focus-visible{outline:2px solid #fff;outline-offset:2px}
-.stage{min-width:0;display:flex;flex-direction:column;gap:8px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.pill{background:var(--gd);color:var(--gold);border-radius:20px;padding:5px 14px;font-size:13px;font-weight:700}
-h1,h2,h3{margin:0}h2{font:900 26px Impact,"Arial Narrow",sans-serif;letter-spacing:.5px}
-.hero{position:relative;flex:1;min-height:440px;border-radius:30px 30px 30px 30px;overflow:hidden;background:var(--fb) center/cover;display:flex;align-items:flex-end}
-.hero:before,.card:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1d1c20ee 0,#1d1c2000 65%)}
-.hero .in{position:relative;padding:26px;max-width:620px}
-.name{font:italic 900 clamp(38px,7vw,68px)/.95 Impact,"Arial Black",sans-serif;transform:rotate(-3deg);transform-origin:left;margin-bottom:14px}
-.name span{color:var(--gold)}
-.btn{border:0;background:var(--gold);color:#2b2a2f;font-weight:700;border-radius:20px;padding:8px 18px;cursor:pointer;text-decoration:none;display:inline-block}
-.btn.alt{background:none;border:1.5px solid var(--gold);color:var(--gold)}.btn.sm{padding:4px 12px;font-size:13px}.btn.red{background:#c0504d;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
-.card{position:relative;min-height:230px;border-radius:24px;overflow:hidden;background:var(--fb) center/cover;display:flex;align-items:flex-end;cursor:pointer;border:0;text-align:left;width:100%}
-.card .in{position:relative;padding:16px;width:100%}.card h3{font-size:17px}.card p{margin:4px 0 0;color:#e2ddd3;font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.tag{display:inline-block;background:var(--gold);color:#2b2a2f;border-radius:12px;padding:1px 10px;font-size:12px;font-weight:700;margin-bottom:6px}
-.bar{height:6px;border-radius:3px;background:#fff3;margin-top:8px}.bar i{display:block;height:100%;border-radius:3px;background:var(--gold)}
-.side{display:flex;flex-direction:column;gap:8px}
-.box{background:var(--pan);border-radius:24px;padding:16px}
-.mut{color:var(--mut);font-size:13px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.big{font:900 34px Impact,sans-serif}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.stats div{background:#0003;border-radius:14px;padding:8px;text-align:center}.stats b{color:var(--gold);font-size:20px;display:block}
-.media{border-radius:24px;min-height:150px;background:var(--fb) center/cover}
-.empty{padding:40px;text-align:center;color:var(--mut);background:#0003;border-radius:24px;grid-column:1/-1}
-.modal{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:16px;z-index:50}
-.mbox{background:var(--pan);border-radius:28px;max-width:560px;width:100%;max-height:90vh;overflow:auto}
-.mimg{height:240px;background:var(--fb) center/cover}.mbody{padding:20px}
-/* admin */
-.adm{margin:0;padding:0}
-.panel{background:var(--bg);border-radius:0;padding:10px;min-height:100vh;min-height:100dvh}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.tabs button{border:1.5px solid var(--gold);background:none;color:var(--gold);border-radius:18px;padding:5px 14px;cursor:pointer}.tabs .on{background:var(--gold);color:#2b2a2f}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.row{display:flex;gap:10px;align-items:center;background:var(--pan);border-radius:16px;padding:8px;margin-bottom:8px}
-.th{width:54px;height:54px;border-radius:12px;background:var(--fb) center/cover;flex:none}.row .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-label{display:block;font-size:13px;color:var(--mut);margin:10px 0 3px}
-input,textarea,select{width:100%;background:#0004;border:1px solid #fff3;border-radius:12px;padding:8px 12px}textarea{min-height:90px;resize:vertical}
-.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.sw{width:40px;height:40px;border-radius:50%;border:5px solid;cursor:pointer}.sw:focus-visible{outline:2px solid #fff;outline-offset:2px}input[type=color]{height:44px;padding:3px;cursor:pointer}
-.ftr{text-align:center;padding:0 0 8px;background:var(--bg)}.ftr a{font-size:11px;color:var(--mut);opacity:.12}.ftr a:hover,.ftr a:focus-visible{opacity:1}
-@media(max-width:860px){.ftr{padding-bottom:76px}}
-.bl{min-height:100vh;min-height:100dvh;background:var(--bg);padding:10px 12px 24px}
-.bh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.bgrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.feat{grid-column:1/-1;min-height:340px}
-a.card{text-decoration:none;color:inherit}
-.art{max-width:760px;margin:0 auto}.cover{height:min(46vh,380px);border-radius:24px;background:var(--fb) center/cover}
-.ab{padding:18px 4px}.ab h1{font:900 clamp(28px,5vw,44px)/1.1 Impact,"Arial Narrow",sans-serif;margin:8px 0}.ab p{font-size:17px;line-height:1.7}.pn{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:24px}
-@media(max-width:1100px){.app{grid-template-columns:76px 1fr}.side{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}}
-@media(min-width:1500px){.grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}}
-@media(max-width:860px){
-.app{grid-template-columns:1fr;border-radius:0;padding:4px 4px 76px;gap:6px}
-.rail{position:fixed;left:6px;right:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));z-index:20;flex-direction:row;justify-content:space-around;gap:2px;padding:6px;border-radius:28px;overflow-x:auto;box-shadow:0 8px 24px #0008}
-.logo{display:none}.rail button{width:40px;height:40px;flex:none;font-size:17px}
-.hero{min-height:380px;border-radius:24px}.hero .in{padding:18px}
-.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.card{min-height:190px;border-radius:20px}.card .in{padding:12px}
-.side{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}
-.panel{padding:8px}
-.tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.tabs button{flex:none}
-.row{flex-wrap:wrap}.row .t{flex-basis:calc(100% - 70px)}
-input,textarea,select{font-size:16px}
-.mimg{height:180px}h2{font-size:22px}
-}
-@media(max-width:520px){.side{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:hover{transform:translateY(-3px)}}
-</style></head><body>
-<div id="root"></div>
+:root{--ink:#0c0c0c;--mut:#667085;--bg:#f9f9f9;--card:#fff;--line:#ececec;--r:20px}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;padding:12px;overflow-x:hidden}
+.w{max-width:1080px;margin:0 auto;display:grid;gap:12px}
+a{color:inherit;text-decoration:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,4vw,36px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 20px;border-radius:12px;font:600 14px inherit;border:1px solid var(--ink);cursor:pointer}
+.btn.d{background:var(--ink);color:#fff}
+.pill{display:inline-block;background:#f2f4f7;border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600}
+.nav{display:flex;align-items:center;gap:12px;padding:12px 20px;flex-wrap:wrap}
+.av{width:36px;height:36px;border-radius:50%;background:var(--ink) center/cover;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.st{background:#ecfdf3;color:#067647}.st.busy{background:#fef3f2;color:#b42318}
+.nav nav{margin-left:auto;display:flex;gap:20px;font-size:14px;font-weight:500}
+h1{font-size:clamp(30px,6vw,56px);line-height:1.08;letter-spacing:-.025em;font-weight:600;max-width:760px}
+.sub{color:var(--mut);max-width:620px;margin:18px 0 26px;font-size:16px}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap}
+h2{font-size:13px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px}
+.g{display:grid;gap:12px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.m b{display:block;font-size:clamp(32px,5vw,48px);letter-spacing:-.02em}.m span{font-weight:600}.m p{color:var(--mut);font-size:13px}
+.phil p{font-size:clamp(18px,3vw,26px);line-height:1.4;font-weight:500;max-width:860px}
+.proj .th{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,#e4e8ef,#f3f4f6) center/cover;margin-bottom:16px}
+.proj h3{font-size:20px;margin:10px 0}.proj dt{font-size:12px;font-weight:700;color:var(--mut);margin-top:12px;text-transform:uppercase}.proj dd{font-size:14px}
+.proj .imp{background:var(--ink);color:#fff;border-radius:12px;padding:12px 14px;margin-top:14px;font-weight:600;font-size:14px}
+.tg{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.dm h3{font-size:16px;margin:10px 0 14px}.dm .pill.l{background:#ecfdf3;color:#067647;float:right}
+.q p{font-size:clamp(18px,3vw,24px);font-weight:500;max-width:760px}.q .by{display:flex;gap:12px;align-items:center;margin-top:20px}.q small{color:var(--mut);display:block}
+.star{color:#f5b301;letter-spacing:2px}
+.cl{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}.cl:last-child{border:0}.cl small{color:var(--mut)}
+.ct{background:var(--ink);color:#fff;text-align:center;border-color:var(--ink)}.ct h2{color:#a0a4ab}.ct .big{font-size:clamp(22px,4vw,36px);font-weight:600}
+.ct .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}.ct .btn{border-color:#555;color:#fff}.ct .btn.d{background:#fff;color:#000}
+@media(max-width:768px){.nav nav{display:none}.g3,.g2{grid-template-columns:1fr}body{padding:10px;padding-top:calc(10px + env(safe-area-inset-top));padding-bottom:calc(10px + env(safe-area-inset-bottom))}.hero .btn{flex:1}}
+
+/* Glassmorphism */
+body{background:transparent}body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(620px 420px at 8% 0,#c7d2fe,transparent 62%),radial-gradient(520px 520px at 100% 18%,#fbcfe8,transparent 60%),radial-gradient(640px 520px at 28% 100%,#a5f3fc,transparent 60%),#f4f5fb}
+.card{background:rgba(255,255,255,.5);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.75);box-shadow:0 10px 34px rgba(60,64,140,.12),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .25s,box-shadow .25s}
+a.card:hover,.proj:hover,.m:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(60,64,140,.18),inset 0 1px 0 #fff}
+header.nav{position:sticky;top:8px;z-index:20;background:rgba(255,255,255,.62)}
+.av{background-color:#fff;border:2px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.nav .av{width:42px;height:42px}
+.pill{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.85)}
+.st{background:rgba(209,250,229,.7)}.st.busy{background:rgba(254,226,226,.75)}
+.btn:not(.d){background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.9);color:var(--ink)}
+.btn.d{box-shadow:0 6px 18px rgba(12,12,12,.25)}
+.proj .th{border:1px solid rgba(255,255,255,.8)}
+.proj .imp{background:rgba(12,12,12,.82)}
+.ct{background:rgba(14,16,32,.72);border:1px solid rgba(255,255,255,.18)}
+.ct .btn:not(.d){background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff}
+.cl{border-color:rgba(0,0,0,.07)}
+.cp{margin-top:28px;font-size:12px;color:rgba(255,255,255,.45)}#hx{cursor:default;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+</style></head><body><div class="w" id="app"></div>
+<script src="data.js"></script>
 <script>
-const SEC=[['projects','Projects','Project','Tech / tags'],['photos','Photos','Photo','Caption'],['blogs','Blogs','Blog post','Read time'],['events','Events','Event','Location'],['collabs','Collaborations','Collaboration','Partner / role'],['certs','Certifications','Certificate','Issuer'],['stack','Tech Stack','Skill','Level (0-100)']];
-const IC={home:'⌂',projects:'◧',photos:'▣',blogs:'✎',events:'★',collabs:'⚭',certs:'✔',stack:'⚙'};
-const $=s=>document.querySelector(s);
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const uid=()=>Math.random().toString(36).slice(2,9);
-function seed(){const it=(title,desc,meta,date)=>({id:uid(),title,desc,img:'',link:'',meta,date});
-return{profile:{name:'Your Name',role:'Computer Science Student',bio:'I build small, useful software and keep learning in public. Everything on this page is edited from the admin panel.',hero:'',avatar:'',location:'City, Country',tags:'Developer, Learner, Builder',since:'2022',email:'',github:'',pin:'admin123'},
-projects:[it('Campus Event Planner','A web app that helps student clubs plan and promote events.','React, Node.js','2026-03')],
-photos:[it('Hackathon night','Our team before the demo.','Dhaka','2026-02')],
-blogs:[it('What I learned from my first hackathon','Notes on shipping in 24 hours.','4 min read','2026-04')],
-events:[it('University Programming Contest','Placed in the top ten.','Main campus','2026-05')],
-collabs:[it('Open-source docs sprint','Translated documentation with a community team.','Community maintainers','2026-01')],
-certs:[it('Introduction to Databases','Completed coursework and final exam.','Coursera','2025-11')],
-stack:[it('Python','Scripts, data work, coursework.','85',''),it('JavaScript','Front-end and Node.js.','75',''),it('SQL','Queries and schema design.','65','')]}}
-let D;try{D=JSON.parse(localStorage.getItem('pf'))}catch(e){}
-if(!D||!D.profile)D=seed();
-const PRE=[['Amber','#f9a825','#3a3840'],['Sky','#38bdf8','#2b3342'],['Mint','#34d399','#27353a'],['Rose','#fb7185','#3b2f38'],['Violet','#a78bfa','#33304a'],['Lime','#a3e635','#2f3628']];
-['projects','photos','blogs','events','collabs','certs','stack'].forEach(k=>{if(!Array.isArray(D[k]))D[k]=[]});
-function applyTheme(){const P=D.profile,a=P.accent||'#f9a825',b=P.base||'#3a3840',r=document.documentElement.style;
- const sh=(h,t)=>{const n=parseInt(h.slice(1),16);return '#'+[n>>16,n>>8&255,n&255].map(v=>Math.round(t<0?v*(1+t):v+(255-v)*t).toString(16).padStart(2,'0')).join('')};
- r.setProperty('--gold',a);r.setProperty('--gd',sh(a,-.55));r.setProperty('--bg',b);r.setProperty('--pan',sh(b,.07));r.setProperty('--fb','linear-gradient(135deg,'+sh(a,-.55)+','+sh(b,-.45)+')')}
-applyTheme();
-function save(){try{localStorage.setItem('pf',JSON.stringify(D));return true}catch(e){alert('Storage is full. Use smaller images or paste image links instead.');return false}}
-const bg=u=>u?`style="background-image:url('${esc(u)}')"`:'';
-let ed=null,tab='profile',modal=null;
-function route(){const h=location.hash.slice(1)||'home';if(h==='admin')admin();else if(h==='blog'||h==='blogs'||h.startsWith('post-'))location.replace('blog.html');else pub(h)}
-function pub(sec){
- const P=D.profile,s=SEC.find(x=>x[0]===sec);
- const nav=[['home','Home']].concat(SEC.map(x=>[x[0],x[1]])).map(([k,l])=>`<button class="${k===sec?'on':''}" title="${l}" aria-label="${l}" onclick="${k==='blogs'?"location.href='blog.html'":"location.hash='"+k+"'"}">${IC[k]}</button>`).join('');
- let main;
- if(!s){main=`<div class="hero" ${bg(P.hero)}><div class="in"><span class="tag">${esc(P.role)}</span><div class="name">${esc(P.name)}<span>.</span></div><p>${esc(P.bio)}</p><p><button class="btn" onclick="location.hash='projects'">See my projects</button> <a class="btn alt" href="blog.html">Read my blog</a> ${P.cv?`<button class="btn alt" onclick="dlCV()">⬇ Download CV</button>`:''} ${P.github?`<a class="btn alt" href="${esc(P.github)}" target="_blank" rel="noopener">GitHub</a>`:''} ${P.email?`<a class="btn alt" href="mailto:${esc(P.email)}">Email me</a>`:''}</p></div></div>`}
- else{const L=D[s[0]]||[];main=`<h2>${s[1]}</h2><div class="grid">${L.length?L.map(i=>`<button class="card" ${bg(i.img)} onclick="openItem('${s[0]}','${i.id}')"><div class="in">${i.meta&&s[0]!=='stack'?`<span class="tag">${esc(i.meta)}</span>`:''}<h3>${esc(i.title)}</h3><p>${esc(i.desc)}</p>${s[0]==='stack'?`<div class="bar"><i style="width:${Math.min(100,+i.meta||0)}%"></i></div>`:''}</div></button>`).join(''):`<div class="empty">Nothing here yet. Add ${s[1].toLowerCase()} from the admin panel.</div>`}</div>`}
- const ph=(D.photos||[]).filter(p=>p.img).slice(-1)[0];
- const yrs=P.since?`${esc(P.since)} <small style="font-size:13px">– present</small>`:'';
- $('#root').innerHTML=`<div class="shell"><div class="app"><nav class="rail"><div class="logo">${esc((P.name||'P')[0])}</div>${nav}</nav>
- <main class="stage"><div class="top"><span class="pill">${s?'Back to home':'Portfolio'}</span><span class="pill">${esc(P.role)}</span></div>${main}</main>
- <aside class="side"><div class="box"><b>Hometown</b><div class="mut">${esc(P.location)}</div><div class="chips">${P.tags.split(',').filter(t=>t.trim()).map(t=>`<span class="tag">${esc(t.trim())}</span>`).join('')}</div></div>
- <div class="box"><b>At a glance</b><div class="stats">${SEC.map(x=>`<div><b>${(D[x[0]]||[]).length}</b><span class="mut">${x[1]}</span></div>`).join('')}</div></div>
- <div class="box"><b>Years active</b><div class="big">${yrs}</div></div>
- <div class="media" ${bg(ph&&ph.img)}></div></div><footer class="ftr"><a href="#admin" aria-label="Admin">Admin</a></footer></div>`;
- if(modal)showModal()}
-function openItem(k,id){modal={k,id};showModal()}
-function showModal(){const i=(D[modal.k]||[]).find(x=>x.id===modal.id);if(!i){modal=null;return}
- const d=document.createElement('div');d.className='modal';d.onclick=e=>{if(e.target===d){modal=null;d.remove()}};
- d.innerHTML=`<div class="mbox"><div class="mimg" ${bg(i.img)}></div><div class="mbody"><h2>${esc(i.title)}</h2><p class="mut">${esc([i.meta,i.date].filter(Boolean).join(' • '))}</p><p>${esc(i.desc)}</p><p>${i.link?`<a class="btn" href="${esc(i.link)}" target="_blank" rel="noopener">Open link</a> `:''}<button class="btn alt" onclick="modal=null;this.closest('.modal').remove()">Close</button></p></div></div>`;
- document.body.appendChild(d)}
-const sortedBlogs=()=>(D.blogs||[]).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-function blog(){const P=D.profile,L=sortedBlogs();
- const c=(i,big)=>`<a class="card ${big?'feat':''}" href="#post-${i.id}" ${bg(i.img)}><div class="in">${i.meta?`<span class="tag">${esc(i.meta)}</span>`:''}<h3>${esc(i.title)}</h3><p>${esc(i.desc)}</p><span class="mut">${esc(i.date||'')}</span></div></a>`;
- $('#root').innerHTML=`<div class="bl"><header class="bh"><a class="btn alt sm" href="#home">← Portfolio</a><h2>${esc(P.name)}’s Blog</h2><a class="btn alt sm" href="#admin">Admin</a></header>${L.length?`<div class="grid bgrid">${c(L[0],1)}${L.slice(1).map(i=>c(i)).join('')}</div>`:'<div class="empty">No posts yet. Add one from the admin panel.</div>'}</div>`;scrollTo(0,0)}
-function post(id){const P=D.profile,L=sortedBlogs(),i=L.find(x=>x.id===id);
- if(!i){location.hash='blog';return}
- const k=L.indexOf(i),n=L[k-1],p=L[k+1];
- const body=(i.body||i.desc||'').split(/\n{2,}/).map(t=>`<p>${esc(t).replace(/\n/g,'<br>')}</p>`).join('');
- $('#root').innerHTML=`<div class="bl"><header class="bh"><a class="btn alt sm" href="#blog">← All posts</a><a class="btn alt sm" href="#home">Portfolio</a></header><article class="art"><div class="cover" ${bg(i.img)}></div><div class="ab">${i.meta?`<span class="tag">${esc(i.meta)}</span>`:''}<h1>${esc(i.title)}</h1><p class="mut">${esc([P.name,i.date].filter(Boolean).join(' • '))}</p>${body}${i.link?`<p><a class="btn" href="${esc(i.link)}" target="_blank" rel="noopener">Open link</a></p>`:''}<div class="pn">${p?`<a class="btn alt sm" href="#post-${p.id}">← ${esc(p.title)}</a>`:'<span></span>'}${n?`<a class="btn alt sm" href="#post-${n.id}">${esc(n.title)} →</a>`:''}</div></div></article></div>`;scrollTo(0,0)}
-/* ---------- admin ---------- */
-function admin(){
- if(sessionStorage.getItem('ok')!=='1'){$('#root').innerHTML=`<div class="adm"><div class="panel" style="max-width:380px;margin:60px auto;min-height:0;border-radius:30px"><h2>Admin sign in</h2><label>PIN</label><input id="pin" type="password" autofocus><div class="acts"><button class="btn" onclick="login()">Sign in</button><a class="btn alt" href="#home">Back to site</a></div><p class="mut">Default PIN is admin123. Change it under Profile. This PIN only keeps casual visitors out; it is not real security.</p></div></div>`;$('#pin').onkeydown=e=>{if(e.key==='Enter')login()};return}
- const tabs=[['profile','Profile'],['settings','Settings'],['blogsite','Blog site']].concat(SEC.map(x=>[x[0],x[1]]));
- let body;
- if(tab==='blogsite'){body=blogsiteHtml()}else if(tab==='settings'){body=settingsHtml()}else if(tab==='profile'){const P=D.profile;body=`<div class="two"><div>${f('name','Name',P.name)}${f('role','Role',P.role)}${f('location','Hometown',P.location)}${f('tags','Tags (comma separated)',P.tags)}${f('since','Active since (year)',P.since)}</div><div>${f('email','Email',P.email)}${f('github','GitHub link',P.github)}${f('pin','Admin PIN',P.pin)}<label>Hero background image</label><input id="p_hero" placeholder="Image link" value="${esc(P.hero&&P.hero.startsWith('data:')?'':P.hero)}"><input type="file" accept="image/*" onchange="up(this,'p_hero')"><label>CV (PDF)</label><input id="p_cv" placeholder="CV link, or upload a file below" value="${esc(P.cv&&P.cv.startsWith('data:')?'':P.cv)}"><input type="file" accept=".pdf,application/pdf" onchange="upCV(this)">${P.cv&&P.cv.startsWith('data:')?'<p class="mut">A CV file is saved. Choose a new file to replace it.</p>':''}</div></div><label>Bio</label><textarea id="p_bio">${esc(P.bio)}</textarea><div class="acts"><button class="btn" onclick="saveProfile()">Save profile</button></div>`}
- else{const s=SEC.find(x=>x[0]===tab),L=D[tab],e=ed&&ed.k===tab?(L.find(x=>x.id===ed.id)||{}):{};
- body=`<div class="two"><div><h3>${s[1]} (${L.length})</h3>${tab==='blogs'?' <a class="btn alt sm" href="blog.html">Open blog page</a>':''}<br>${L.map(i=>`<div class="row"><div class="th" ${bg(i.img)}></div><div class="t">${esc(i.title)}</div><button class="btn sm" onclick="ed={k:'${tab}',id:'${i.id}'};admin()">Edit</button><button class="btn sm red" onclick="del('${i.id}')">Delete</button></div>`).join('')||'<div class="empty">Nothing yet. Add the first one.</div>'}</div>
- <div><h3>${e.id?'Edit':'Add'} ${s[2].toLowerCase()}</h3>${i_('title','Title',e.title)}<label>Description</label><textarea id="i_desc">${esc(e.desc)}</textarea>${tab==='blogs'?`<label>Full article (leave a blank line between paragraphs)</label><textarea id="i_body" style="min-height:200px">${esc(e.body)}</textarea><label>Category (blog site filter)</label><input id="i_cat" value="${esc(e.cat)}"><label>Author</label><input id="i_author" value="${esc(e.author)}"><label>Views</label><input id="i_views" type="number" value="${esc(e.views||0)}"><label style="display:flex;gap:8px;align-items:center"><input id="i_hot" type="checkbox" style="width:auto" ${e.hot?'checked':''}> Hot / featured</label>`:''}${i_('meta',s[3],e.meta)}${i_('date','Date',e.date,'month')}${i_('link','Link (optional)',e.link)}<label>Background picture</label><input id="i_img" placeholder="Image link" value="${esc(e.img&&e.img.startsWith('data:')?'':e.img)}"><input type="file" accept="image/*" onchange="up(this,'i_img')">${e.img&&e.img.startsWith('data:')?'<p class="mut">An uploaded image is saved. Choose a new file to replace it.</p>':''}<div class="acts"><button class="btn" onclick="saveItem()">${e.id?'Save changes':'Add '+s[2].toLowerCase()}</button>${e.id?'<button class="btn alt" onclick="ed=null;admin()">Cancel</button>':''}</div></div></div>`}
- $('#root').innerHTML=`<div class="adm"><div class="panel"><div class="top"><h2>Admin panel</h2><span><button class="btn sm" onclick="tab='settings';ed=null;admin()">Colors</button> <a class="btn alt sm" href="blog.html">Blog</a> <a class="btn alt sm" href="#home">View site</a> <button class="btn alt sm" onclick="sessionStorage.removeItem('ok');admin()">Sign out</button></span></div><div class="tabs">${tabs.map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="tab='${k}';ed=null;admin()">${l}</button>`).join('')}</div>${body}<hr style="border-color:#fff2;margin:22px 0"><div class="acts"><button class="btn alt sm" onclick="exp()">Export backup</button><label class="btn alt sm" style="margin:0;display:inline-block;cursor:pointer">Import backup<input type="file" accept=".json" hidden onchange="imp(this)"></label></div><p class="mut">Content is stored in this browser. Export a backup after big edits.</p></div></div>`}
-const f=(k,l,v)=>`<label>${l}</label><input id="p_${k}" value="${esc(v)}">`;
-const i_=(k,l,v,t)=>`<label>${l}</label><input id="i_${k}" type="${t||'text'}" value="${esc(v)}">`;
-function blogsiteHtml(){const c=Object.assign({site:'MY BLOG',heroTitle:'Discover Nice Articles Here',heroText:'All the articles and contents of the site are updated here and you can find them quickly and without any problems.',cats:'Technology, Programming, Design, Career',accent:'#2f5bff',portfolio:'',footer:'All rights reserved.'},D.blogcfg||{});
- const g=(k,l)=>`<label>${l}</label><input id="s_${k}" value="${esc(c[k])}">`;
- return `<h3>Blog site settings</h3><p class="mut">These control blog.html. Posts themselves are in the Blogs tab. Subscribers so far: ${(D.subs||[]).length}.</p><div class="two"><div>${g('site','Site name')}${g('heroTitle','Hero title')}${g('cats','Categories (comma separated)')}${g('portfolio','Portfolio link')}${g('footer','Footer text')}</div><div><label>Hero text</label><textarea id="s_heroText">${esc(c.heroText)}</textarea><label>Accent color</label><input id="s_accent" type="color" value="${c.accent}"></div></div><div class="acts"><button class="btn" onclick="saveBlogSite()">Save blog settings</button></div>`}
-function saveBlogSite(){const c=D.blogcfg||(D.blogcfg={});['site','heroTitle','cats','portfolio','footer','heroText','accent'].forEach(k=>c[k]=$('#s_'+k).value.trim());if(save()){alert('Blog settings saved.');admin()}}
-function settingsHtml(){const P=D.profile,a=P.accent||'#f9a825',b=P.base||'#3a3840';
- return `<h3>Theme colors</h3><p class="mut">Pick a preset or choose your own colors. Changes apply to the whole site right away.</p><div class="chips" style="gap:10px;margin:12px 0">${PRE.map(p=>`<button class="sw" title="${p[0]}" aria-label="${p[0]}" style="background:${p[1]};border-color:${p[2]}" onclick="setTheme('${p[1]}','${p[2]}')"></button>`).join('')}</div><div class="two"><div><label>Accent color</label><input type="color" id="c_a" value="${a}" oninput="setTheme(this.value,null,1)"></div><div><label>Background color</label><input type="color" id="c_b" value="${b}" oninput="setTheme(null,this.value,1)"></div></div><div class="acts"><button class="btn alt" onclick="setTheme('#f9a825','#3a3840')">Reset to default</button></div>`}
-function setTheme(a,b,live){const P=D.profile;if(a)P.accent=a;if(b)P.base=b;applyTheme();save();if(!live)admin()}
-function login(){if($('#pin').value===D.profile.pin){sessionStorage.setItem('ok','1');admin()}else alert('Wrong PIN. Try again.')}
-function up(inp,target){const fl=inp.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const m=900,sc=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*sc;c.height=im.height*sc;c.getContext('2d').drawImage(im,0,0,c.width,c.height);const el=document.getElementById(target);el.value=c.toDataURL('image/jpeg',.72);el.dataset.up=1;inp.insertAdjacentHTML('afterend','<p class="mut">Image ready. Save to keep it.</p>')};im.src=r.result};r.readAsDataURL(fl)}
-function keepImg(id,old){const el=document.getElementById(id);return el.value||(old&&old.startsWith('data:')?old:'')}
-function upCV(inp){const f=inp.files[0];if(!f)return;if(f.size>2e6){alert('That CV is over 2 MB. Use a smaller file or paste a link instead.');inp.value='';return}const r=new FileReader();r.onload=()=>{$('#p_cv').value=r.result;inp.insertAdjacentHTML('afterend','<p class="mut">CV ready. Save profile to keep it.</p>')};r.readAsDataURL(f)}
-function dlCV(){const u=D.profile.cv;if(!u)return;if(!u.startsWith('data:')){window.open(u,'_blank','noopener');return}fetch(u).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(D.profile.name||'CV').replace(/\s+/g,'_')+'_CV.pdf';a.click()})}
-function saveProfile(){const P=D.profile;['name','role','location','tags','since','email','github','pin'].forEach(k=>P[k]=$('#p_'+k).value.trim());P.bio=$('#p_bio').value;P.hero=keepImg('p_hero',P.hero);P.cv=keepImg('p_cv',P.cv);if(save()){alert('Profile saved.');admin()}}
-function saveItem(){const L=D[tab],t=$('#i_title').value.trim();if(!t){alert('Add a title first.');return}
- const old=ed&&ed.k===tab?L.find(x=>x.id===ed.id):null;
- const o={id:old?old.id:uid(),title:t,desc:$('#i_desc').value,body:$('#i_body')?$('#i_body').value:((old&&old.body)||''),cat:$('#i_cat')?$('#i_cat').value.trim():((old&&old.cat)||''),author:$('#i_author')?$('#i_author').value.trim():((old&&old.author)||''),views:$('#i_views')?(+$('#i_views').value||0):((old&&old.views)||0),hot:$('#i_hot')?$('#i_hot').checked:!!(old&&old.hot),meta:$('#i_meta').value.trim(),date:$('#i_date').value,link:$('#i_link').value.trim(),img:keepImg('i_img',old&&old.img)};
- if(old)Object.assign(old,o);else L.push(o);ed=null;if(save())admin()}
-function del(id){if(!confirm('Delete this item?'))return;D[tab]=D[tab].filter(x=>x.id!==id);ed=null;save();admin()}
-function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D)],{type:'application/json'}));a.download='portfolio-backup.json';a.click()}
-function imp(i){const fl=i.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(!j.profile)throw 0;D=j;save();admin()}catch(e){alert('That file is not a portfolio backup.')}};r.readAsText(fl)}
-addEventListener('hashchange',()=>{modal=null;route()});route();
+let D=load(),S=D.site;const A=['','★','★★','★★★','★★★★','★★★★★'];
+const ini=n=>esc((n||'?').trim()[0]||'?').toUpperCase();
+const av=(u,n)=>`<span class="av" style="${u?`background-image:url('${esc(safe(u))}')`:''}">${u?'':ini(n)}</span>`;
+const R={
+metrics:()=>D.metrics.length&&`<div class="g g3" id="analytics">${D.metrics.map(m=>`<div class="card m"><b>${esc(m.value)}</b><span>${esc(m.label)}</span><p>${esc(m.sub)}</p></div>`).join('')}</div>`,
+philosophy:()=>S.philosophy&&`<div class="card phil" id="about"><h2>Philosophy</h2><p>${esc(S.philosophy)}</p></div>`,
+projects:()=>D.projects.length&&`<div id="projects"><h2 style="padding:8px 4px 0">Featured projects</h2><div class="g g2">${D.projects.map(p=>`<article class="card proj"><div class="th" style="${p.thumb?`background-image:url('${esc(safe(p.thumb))}')`:''}"></div><span class="pill">${esc(p.category)}</span><h3>${esc(p.title)}</h3><dl><dt>Situation &amp; Task</dt><dd>${esc(p.problem)}</dd><dt>Tech stack</dt><dd class="tg">${tags(p.stack).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</dd><dt>Action</dt><dd>${esc(p.action)}</dd></dl><div class="imp">Outcome: ${esc(p.impact)}</div><div class="tg" style="margin-top:14px">${p.demo?`<a class="btn d" href="${esc(safe(p.demo))}" target="_blank" rel="noopener">Live demo</a>`:''}${p.repo?`<a class="btn" href="${esc(safe(p.repo))}" target="_blank" rel="noopener">GitHub</a>`:''}</div></article>`).join('')}</div></div>`,
+demos:()=>D.demos.length&&`<div><h2 style="padding:8px 4px 0">Live demos &amp; artifacts</h2><div class="g g3">${D.demos.map(d=>`<a class="card dm" href="${esc(safe(d.url))}" target="_blank" rel="noopener"><span class="pill l">● ${esc(d.status)}</span><span class="pill">${esc(d.type)}</span><h3>${esc(d.title)}</h3><span style="font-weight:600;font-size:14px">Open ↗</span></a>`).join('')}</div></div>`,
+skills:()=>D.skills.length&&`<div id="skills"><h2 style="padding:8px 4px 0">Skills</h2><div class="g g2">${D.skills.map(s=>`<div class="card"><h3 style="font-size:17px;margin-bottom:12px">${esc(s.cat)}</h3><div class="tg">${tags(s.tags).map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</div></div>`).join('')}</div></div>`,
+testimonials:()=>D.testimonials.length&&D.testimonials.map(t=>`<div class="card q"><span class="star">${A[Math.min(5,Math.max(0,t.rating|0))]}</span><p>“${esc(t.quote)}”</p><div class="by">${av(t.photo,t.name)}<div><b>${esc(t.name)}</b><small>${esc(t.role)}${t.company?' · '+esc(t.company):''}</small></div></div></div>`).join(''),
+courses:()=>D.courses.length&&`<div class="card"><h2>Coursework, certifications &amp; awards</h2>${D.courses.map(c=>`<div class="cl"><span>${c.url?`<a href="${esc(safe(c.url))}" target="_blank" rel="noopener"><b>${esc(c.title)} ↗</b></a>`:`<b>${esc(c.title)}</b>`}<br><small>${esc(c.kind)}</small></span><small>${esc(c.date)}</small></div>`).join('')}</div>`};
+function draw(){const busy=S.status==='busy';
+document.title=S.name+' · Portfolio';
+$app=document.getElementById('app');
+$app.innerHTML=`<header class="card nav">${av(S.photo||'logo.jpg',S.name)}<b>${esc(S.name)}</b><span class="pill st ${busy?'busy':''}">${busy?'🔴 Busy / Working':'🟢 Available for Internships / Roles'}</span><nav><a href="#projects">Projects</a><a href="#analytics">Analytics</a><a href="#skills">Skills</a><a href="#about">About</a><a href="blog.html">Blog</a><a href="#contact">Contact</a></nav></header>
+<section class="card hero"><p class="sub" style="margin:0 0 18px;font-weight:600;color:var(--ink)">${esc(S.title)}</p><h1>Bridging Code, Analytics, &amp; Business Strategy.</h1><p class="sub">${esc(S.sub)}</p><div class="row"><a class="btn d" href="#projects">View Projects</a><a class="btn" href="#contact">Contact Me</a></div></section>`
++D.order.filter(s=>s.on&&R[s.id]).map(s=>R[s.id]()||'').join('')
++`<footer class="card ct" id="contact"><h2>Get in touch</h2><div class="big">${esc(S.email)}</div><div class="row"><a class="btn d" href="mailto:${esc(S.email)}">Email me</a><a class="btn" href="${esc(safe(S.linkedin))}" target="_blank" rel="noopener">LinkedIn</a><a class="btn" href="${esc(safe(S.github))}" target="_blank" rel="noopener">GitHub</a><a class="btn" href="blog.html">Read my blog</a>${S.resume?`<a class="btn" href="${esc(safe(S.resume))}" download="resume.pdf">Resume PDF</a>`:''}</div><p class="cp"><span id="hx">©</span> ${new Date().getFullYear()} ${esc(S.name)}. All rights reserved.</p></footer>`;
+(()=>{let n=0,t;document.getElementById('hx').onclick=()=>{n++;clearTimeout(t);t=setTimeout(()=>n=0,900);if(n>=3)location.href='portfolioadmin.html'}})();}
+draw();fetchRemote().then(d=>{if(d){D=d;S=D.site;draw()}});
 </script></body></html>

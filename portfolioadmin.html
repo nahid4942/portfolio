@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>Portfolio Admin</title><link rel="icon" href="logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c0c0c;--mut:#667085;--line:#e6e8ec;--bg:#f6f7f9}
+*{box-sizing:border-box;margin:0}html,body{overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+button,input,select,textarea{font:inherit}[hidden]{display:none!important}
+.btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:10px;padding:9px 16px;min-height:40px;font-weight:600;cursor:pointer}
+.btn.s{background:#fff;color:var(--ink);border-color:var(--line)}.btn.d{background:#fff;color:#b42318;border-color:#fda29b}.btn.sm{min-height:34px;padding:5px 12px;font-size:12px}
+input,select,textarea{width:100%;border:1px solid #d0d5dd;border-radius:10px;padding:10px 12px;background:#fff;font-size:16px}
+textarea{min-height:90px;resize:vertical}label{display:block;font-weight:600;margin:14px 0 5px}.hint{color:var(--mut);font-size:12px;font-weight:400}
+#login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;width:100%;max-width:370px}.err{color:#b42318;min-height:18px;margin-top:10px}
+#app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+aside{background:#0f1115;color:#cbd0d8;padding:20px 12px;position:sticky;top:0;height:100vh;overflow-y:auto}
+aside h1{color:#fff;font-size:16px;padding:0 10px 16px}
+aside button{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;padding:11px 12px;border-radius:10px;cursor:pointer;font-weight:500}
+aside button:hover{background:#1b1f27}aside button.on{background:#fff;color:var(--ink);font-weight:700}
+main{padding:24px;max-width:900px;width:100%}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}.top h2{font-size:19px}
+.row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);background:#fff}.row:last-child{border:0}
+.row.over{outline:2px dashed #98a2b3}.row .t{flex:1;min-width:0}.row .t b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row .t span{color:var(--mut);font-size:12px}
+.h{cursor:grab;color:#98a2b3;font-size:20px;user-select:none;touch-action:none;padding:0 4px}
+.tg{position:relative;width:44px;height:26px;flex:none}.tg input{opacity:0;width:100%;height:100%;position:absolute;margin:0;cursor:pointer;z-index:1}
+.tg i{position:absolute;inset:0;background:#d0d5dd;border-radius:99px;transition:.2s}.tg i:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.tg input:checked+i{background:#12b76a}.tg input:checked+i:after{transform:translateX(18px)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.prev{margin-top:8px;max-height:110px;border-radius:10px;display:block}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;opacity:0;transition:.2s;pointer-events:none;z-index:50}#toast.on{opacity:1}
+@media(max-width:768px){#app{display:block}aside{position:sticky;height:auto;display:flex;gap:6px;overflow-x:auto;padding:calc(10px + env(safe-area-inset-top)) 10px 10px;z-index:10;-webkit-overflow-scrolling:touch}
+aside h1{display:none}aside button{flex:none;width:auto;white-space:nowrap}main{padding:14px 12px calc(24px + env(safe-area-inset-bottom))}.two{grid-template-columns:1fr}.panel{padding:16px}input,select,textarea{min-height:44px}}
+
+/* Glassmorphism */
+body{background:transparent}body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(620px 420px at 8% 0,#c7d2fe,transparent 62%),radial-gradient(520px 520px at 100% 18%,#fbcfe8,transparent 60%),radial-gradient(640px 520px at 28% 100%,#a5f3fc,transparent 60%),#f4f5fb}
+.box,.panel{background:rgba(255,255,255,.55);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.75);box-shadow:0 10px 34px rgba(60,64,140,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+.box{text-align:center}.box label{text-align:left}.box img{width:72px;height:72px;border-radius:50%;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.15);margin-bottom:10px}
+aside{background:rgba(15,17,28,.72);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-right:1px solid rgba(255,255,255,.12)}
+aside h1{display:flex;align-items:center;gap:10px}aside h1 img{width:34px;height:34px;border-radius:50%;border:2px solid #fff;flex:none}
+aside button:hover{background:rgba(255,255,255,.1)}aside button.on{background:rgba(255,255,255,.88);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+input,select,textarea{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 3px rgba(0,0,0,.06)}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(99,102,241,.45);background:#fff}
+.btn.s,.btn.d{background:rgba(255,255,255,.6)}
+.row{background:transparent;border-color:rgba(0,0,0,.07)}
+#toast{background:rgba(12,12,12,.82);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
+@media(max-width:768px){aside{padding:calc(10px + env(safe-area-inset-top)) 10px 10px;align-items:center}aside h1{flex:none;padding:0 6px 0 0}aside h1 span{display:none}}
+</style></head><body>
+<div id="login"><form class="box" id="lf"><img src="logo.jpg" alt="Logo"><h1 style="font-size:21px">Portfolio admin</h1><p class="hint">Sign in to manage your site.</p>
+<label for="em">Email</label><input id="em" type="email" autocomplete="username" required>
+<label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required>
+<button class="btn" style="width:100%;margin-top:16px">Sign in</button><p class="err" id="le"></p></form></div>
+<div id="app" hidden><aside id="nav"></aside><main id="main"></main></div><div id="toast"></div>
+<script src="data.js"></script>
+<script>
+/* Auth + storage: shared Apps Script backend (site-backend.gs). APPS_URL lives in data.js. */
+window.onsync=r=>{if(r.ok)toast('Synced to server');else if(/Session/.test(r.error||'')){sessionStorage.clear();location.reload()}else toast(r.error||'Sync failed')};
+const $=s=>document.querySelector(s);let D=load(),view='site',ed=null;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2000)};
+const tok=()=>{const t=JSON.parse(sessionStorage.getItem('pf_tok')||'null');return t&&t.exp>Date.now()};
+$('#lf').onsubmit=async e=>{e.preventDefault();const le=$('#le');if(!ready()){le.textContent='Set APPS_URL in data.js first.';return}le.textContent='Signing in…';try{const r=await api({action:'login',email:$('#em').value.trim(),password:$('#pw').value});if(r.ok){sessionStorage.setItem('pf_tok',JSON.stringify({t:r.token,exp:Date.now()+216e5}));le.textContent='';start()}else le.textContent=r.error||'Wrong email or password.'}catch(x){le.textContent='Network error. Try again.'}};
+const shrink=(f,w)=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>{const s=Math.min(1,w/i.width),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.8))};i.onerror=rej;i.src=URL.createObjectURL(f)});
+const rd=f=>new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(f)});
+// Field: [key,label,type,opts]. Types: t text, a area, i image, u url, s select, n rating, d date, p pdf
+const M={
+metrics:{n:'Metrics',one:'metric',title:'label',sub:'value',f:[['value','Value (e.g. 40%)'],['label','Label'],['sub','Subtitle']]},
+projects:{n:'Projects',one:'project',title:'title',sub:'category',f:[['title','Project title'],['thumb','Thumbnail','i'],['category','Category tag'],['problem','Problem description (Situation & Task)','a'],['stack','Tech stack tags (comma separated)'],['action','Implementation details','a'],['impact','Business impact metrics'],['demo','Live demo URL','u'],['repo','GitHub repo URL','u']]},
+skills:{n:'Skills',one:'category',title:'cat',sub:'tags',f:[['cat','Category name'],['tags','Skill tags (comma separated)','a']]},
+demos:{n:'Live Demos',one:'demo',title:'title',sub:'type',f:[['title','Title'],['type','Platform','s',['Tableau','Power BI','Colab','Kaggle']],['url','Embed code URL or link','u'],['status','Status tag (e.g. Live)']]},
+courses:{n:'Coursework & Certs',one:'entry',title:'title',sub:'kind',f:[['title','Title'],['kind','Type','s',['Course','Certification','Award']],['date','Date'],['url','Verification link','u']]},
+testimonials:{n:'Testimonials',one:'testimonial',title:'name',sub:'role',f:[['quote','Quote','a'],['name','Author name'],['role','Title'],['company','Company'],['photo','Headshot','i'],['rating','Rating (1-5)','n']]}};
+const TABS=[['site','Site Settings'],['sections','Sections'],...Object.entries(M).map(([k,v])=>[k,v.n])];
+const fld=(k,l,t,o,v)=>{const id='f_'+k;v=v??'';
+ if(t==='a')return`<label for="${id}">${l}</label><textarea id="${id}" data-k="${k}">${esc(v)}</textarea>`;
+ if(t==='s')return`<label for="${id}">${l}</label><select id="${id}" data-k="${k}">${o.map(x=>`<option value="${x[0]??x}" ${(x[0]??x)==v?'selected':''}>${x[1]??x}</option>`).join('')}</select>`;
+ if(t==='i'||t==='p')return`<label>${l} <span class="hint">${t==='p'?'PDF, max 1.5 MB':'upload an image'}</span></label><input type="hidden" id="${id}" data-k="${k}" value="${esc(v)}"><input type="file" accept="${t==='p'?'application/pdf':'image/*'}" data-for="${id}" data-t="${t}">${t==='i'?`<img class="prev" id="${id}_p" src="${esc(safe(v))}" ${v?'':'hidden'} alt="">`:`<span class="hint" id="${id}_p">${v?'PDF uploaded':'No file yet'}</span>`}`;
+ return`<label for="${id}">${l}</label><input id="${id}" data-k="${k}" ${t==='n'?'type="number" min="1" max="5"':t==='d'?'type="date"':''} value="${esc(v)}">`};
+const rows=(arr,m)=>arr.map((x,i)=>`<div class="row" draggable="true" data-i="${i}"><span class="h" title="Drag to reorder">⠿</span><div class="t"><b>${esc(x[m.title])||'(untitled)'}</b><span>${esc(String(x[m.sub]??'').slice(0,70))}</span></div><button class="btn s sm" data-e="${i}">Edit</button><button class="btn d sm" data-x="${i}">Delete</button></div>`).join('')||'<p class="hint" style="padding:16px 0">Nothing here yet.</p>';
+function render(){document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===view));const m=$('#main');
+ if(view==='site'){const S=D.site;m.innerHTML=`<div class="panel"><div class="top"><h2>Site Settings</h2></div>
+ <div class="two"><div>${fld('name','Profile name','t','',S.name)}</div><div>${fld('title','Title','t','',S.title)}</div></div>
+ ${fld('sub','Bio / subheadline','a','',S.sub)}${fld('philosophy','Personal philosophy','a','',S.philosophy)}
+ <div class="two"><div>${fld('photo','Profile image','i','',S.photo)}</div><div>${fld('resume','Resume file','p','',S.resume)}</div></div>
+ ${fld('status','Status pill','s',[['avail','🟢 Available for Internships'],['busy','🔴 Busy / Working']],S.status)}
+ <div class="two"><div>${fld('email','Contact email','t','',S.email)}</div><div>${fld('linkedin','LinkedIn URL','u','',S.linkedin)}</div></div>${fld('github','GitHub URL','u','',S.github)}
+ <div style="margin-top:20px"><button class="btn" id="ss">Save settings</button></div></div>`}
+ else if(view==='sections'){m.innerHTML=`<div class="panel"><div class="top"><h2>Sections</h2></div><p class="hint">Drag to reorder. Toggle to show or hide on the site instantly.</p><div id="lst">${D.order.map((s,i)=>`<div class="row" draggable="true" data-i="${i}"><span class="h">⠿</span><div class="t"><b>${esc(s.name)}</b></div><label class="tg" style="margin:0"><input type="checkbox" data-on="${i}" ${s.on?'checked':''}><i></i></label></div>`).join('')}</div></div>`;dnd(D.order)}
+ else{const k=view,c=M[k];
+  if(ed!==null){const x=ed===-1?{}:D[k][ed];m.innerHTML=`<div class="panel"><div class="top"><h2>${ed===-1?'New':'Edit'} ${c.one}</h2></div>${c.f.map(f=>fld(f[0],f[1],f[2],f[3],x[f[0]])).join('')}<div style="margin-top:20px;display:flex;gap:8px"><button class="btn" id="sv">Save</button><button class="btn s" id="cx">Cancel</button></div></div>`}
+  else{m.innerHTML=`<div class="panel"><div class="top"><h2>${c.n} (${D[k].length})</h2><button class="btn" id="add">Add ${c.one}</button></div><div id="lst">${rows(D[k],c)}</div></div>`;dnd(D[k])}}}
+function dnd(arr){let from=null;const L=$('#lst');if(!L)return;
+ L.ondragstart=e=>{const r=e.target.closest('.row');if(r){from=+r.dataset.i;e.dataTransfer.effectAllowed='move'}};
+ L.ondragover=e=>{e.preventDefault();L.querySelectorAll('.over').forEach(x=>x.classList.remove('over'));e.target.closest('.row')?.classList.add('over')};
+ L.ondrop=e=>{e.preventDefault();const r=e.target.closest('.row');if(r&&from!==null){const to=+r.dataset.i;arr.splice(to,0,arr.splice(from,1)[0]);save(D);render();toast('Order saved')}from=null}}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=view;
+ if(b.dataset.v){view=b.dataset.v;ed=null;render()}
+ else if(b.id==='add'){ed=-1;render()}else if(b.id==='cx'){ed=null;render()}
+ else if(b.dataset.e!==undefined){ed=+b.dataset.e;render()}
+ else if(b.dataset.x!==undefined){if(confirm('Delete this item? This cannot be undone.')){D[k].splice(+b.dataset.x,1);save(D);render();toast('Deleted')}}
+ else if(b.id==='sv'){const x={};document.querySelectorAll('#main [data-k]').forEach(i=>x[i.dataset.k]=i.dataset.k==='rating'?Math.min(5,Math.max(1,+i.value||5)):i.value.trim());ed===-1?D[k].push(x):D[k][ed]=x;ed=null;save(D);render();toast('Saved')}
+ else if(b.id==='ss'){document.querySelectorAll('#main [data-k]').forEach(i=>D.site[i.dataset.k]=i.value.trim());save(D);toast('Saved')}
+ else if(b.id==='out'){sessionStorage.clear();location.reload()}});
+document.addEventListener('change',async e=>{const t=e.target;
+ if(t.dataset.on!==undefined){D.order[+t.dataset.on].on=t.checked;save(D);toast(t.checked?'Section shown':'Section hidden');return}
+ if(!t.dataset.for||!t.files[0])return;const f=t.files[0],h=document.getElementById(t.dataset.for),p=document.getElementById(t.dataset.for+'_p');
+ try{const pdf=t.dataset.t==='p';if(pdf&&f.size>1.5e6)return toast('PDF too large (max 1.5 MB)');toast('Uploading…');const u=pdf?await rd(f):await shrink(f,700);const r=await api({action:'upload',token:TOK(),name:f.name,type:pdf?'application/pdf':'image/jpeg',data:u.split(',')[1]});if(!r.ok)throw new Error(r.error);h.value=r.url;if(pdf)p.textContent='PDF uploaded: '+f.name;else{p.src=u;p.hidden=false}toast('Uploaded. Press Save.')}catch(x){toast(/Session/.test(x.message)?'Session expired':'Upload failed')}});
+function start(){$('#login').hidden=true;$('#app').hidden=false;$('#nav').innerHTML='<h1><img src="logo.jpg" alt=""><span>Portfolio admin</span></h1>'+TABS.map(t=>`<button data-v="${t[0]}">${t[1]}</button>`).join('')+'<button id="out">Sign out</button>';render();pull()}
+async function pull(){if(!ready())return;try{const r=await api({action:'list',token:TOK()});if(r.ok&&r.portfolio&&r.portfolio.site){localStorage.setItem(KEY,JSON.stringify(r.portfolio));D=load();render()}else if(!r.ok)window.onsync(r)}catch(e){toast('Offline: showing cached data')}}
+if(tok())start();
+</script></body></html>
