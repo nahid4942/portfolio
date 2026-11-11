@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow"><title>Blog admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -30,6 +30,46 @@ main{max-width:860px;margin:24px auto;padding:0 16px}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;opacity:0;transition:.2s;pointer-events:none}
 #toast.on{opacity:1}[hidden]{display:none!important}
 @media(max-width:560px){.two{grid-template-columns:1fr}}
+
+/* ---- Mobile / iPhone 12 (390x844) ---- */
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}body{overflow-x:hidden;min-height:100vh;min-height:100dvh;word-break:break-word}
+img,iframe,video{max-width:100%}
+.btn,.tabs button,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media(max-width:768px){
+ header{position:sticky;top:0;z-index:20;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));padding-left:calc(14px + env(safe-area-inset-left));padding-right:calc(14px + env(safe-area-inset-right));gap:8px 10px;flex-wrap:wrap}
+ header b{flex:1;margin:0;font-size:15px}
+ header>.btn{min-height:36px;display:inline-flex;align-items:center}
+ .tabs{order:5;flex:0 0 100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px;margin:2px -14px 0;padding:2px 14px 4px}
+ .tabs::-webkit-scrollbar{display:none}
+ .tabs button{flex:none;white-space:nowrap;min-height:40px;padding:8px 14px;background:#f2f4f7}
+ .tabs button.on{background:var(--ink)}
+ main{margin:14px auto;padding:0 12px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+ .panel{padding:16px;border-radius:14px}
+ .top{gap:10px}.top h2{font-size:17px}
+ input,select,textarea{font-size:16px;padding:11px 12px;min-height:44px}
+ textarea{min-height:110px}
+ input[type=file]{padding:9px;font-size:14px}
+ input[type=datetime-local]{-webkit-appearance:none;appearance:none;min-height:44px;display:block}
+ label{margin:16px 0 6px}
+ .btn{min-height:44px;padding:10px 16px;text-align:center}
+ .btn.sm{min-height:40px;padding:8px 14px;font-size:13px}
+ .row{flex-wrap:wrap;gap:8px 10px;padding:14px 0}
+ .row img,.row .ph{width:72px;height:52px}
+ .row .t{flex:1 1 calc(100% - 90px)}
+ .row .t b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ .row .pill{order:3}
+ .row .btn{order:4;flex:1 1 0;min-width:0;display:inline-flex;align-items:center;justify-content:center}
+ .prev{max-width:100%;height:auto}
+ #toast{bottom:calc(20px + env(safe-area-inset-bottom));max-width:calc(100% - 28px);width:max-content;text-align:center;border-radius:14px;font-size:13px;z-index:50}
+ #login{padding:20px;padding-top:calc(20px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+ .box{padding:22px}
+ #aiw .btn{flex:1 1 100%}
+}
+@media(max-width:420px){
+ .top{flex-wrap:wrap}
+ #sp,[data-go=posts].btn.s{flex:1}
+ .panel div[style*="display:flex"]{flex-wrap:wrap}
+}
 </style></head><body>
 <div id="login"><form class="box" id="lf"><img class="lg" alt="" style="width:56px;height:56px;margin-bottom:12px"><h1>Blog admin</h1><p class="hint">Sign in to manage posts and page content.</p>
 <label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" required>
